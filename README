@@ -11,6 +11,35 @@ Cada historia de usuario cuenta con al menos 5 casos de prueba en la plataforma 
 
 ## ✅ Product Backlog  
 
+# 📌 Product Backlog - Disko ERP
+
+## Priorización 1: MoSCoW
+| ID     | Historia de Usuario                           | Estimación | Categoría |
+|--------|-----------------------------------------------|------------|-----------|
+| HU-01  | Escaneo de ID en entrada                      | 3 pts      | Must      |
+| HU-02  | Registro y verificación de reservaciones      | 5 pts      | Must      |
+| HU-03  | Panel de ocupación en tiempo real             | 8 pts      | Should    |
+| HU-04  | Reportes de asistencia semanal                | 5 pts      | Could     |
+| HU-05  | Notificación a clientes VIP                   | 3 pts      | Won’t     |
+
+---
+
+## Priorización 2: WSJF
+| ID     | Historia de Usuario                           | Valor | Urgencia | Reducción de Riesgo | Esfuerzo | WSJF |
+|--------|-----------------------------------------------|-------|----------|---------------------|----------|------|
+| HU-01  | Escaneo de ID en entrada                      |   8   |    7     |          6          |    3     | 7.0  |
+| HU-02  | Registro y verificación de reservaciones      |   9   |    8     |          7          |    5     | 4.8  |
+| HU-03  | Panel de ocupación en tiempo real             |   7   |    5     |          8          |    8     | 2.5  |
+| HU-04  | Reportes de asistencia semanal                |   5   |    3     |          4          |    5     | 2.4  |
+| HU-05  | Notificación a clientes VIP                   |   4   |    2     |          2          |    3     | 2.6  |
+
+---
+
+📌 **Conclusiones de la priorización**  
+- HU-01 y HU-02 son las de **más alto valor** para el cliente → entran en Sprint 1.  
+- HU-03 se deja como **segundo sprint**, ya que es útil pero no crítico.  
+- HU-04 y HU-05 quedan en backlog de menor prioridad.  
+
 | ID | Historia de Usuario | Prioridad | Estado |
 |-||--|--|
 | HU-01 | Como usuario quiero acceder al sistema con usuario y contraseña para ingresar al ERP. | Alta | To Do |
