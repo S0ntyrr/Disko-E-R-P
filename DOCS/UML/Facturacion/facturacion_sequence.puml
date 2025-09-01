@@ -1,0 +1,10 @@
+@startuml
+actor Cajero
+participant "Sistema ERP" as ERP
+participant "Base de Datos" as DB
+
+Cajero -> ERP : Ingresar datos de venta
+ERP -> DB : Guardar factura
+DB --> ERP : Confirmación
+ERP -> Cajero : Generar comprobante
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+left to right direction
+actor Cliente
+actor Cajero
+
+rectangle "Sistema de Facturación" {
+  Cajero --> (Crear Factura)
+  Cajero --> (Seleccionar Productos)
+  Cajero --> (Aplicar Descuento)
+  Cliente --> (Recibir Factura)
+}
+@enduml

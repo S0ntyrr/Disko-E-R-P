@@ -1,0 +1,9 @@
+@startuml
+actor Administrador
+participant "Sistema" as S
+
+Administrador -> S: Registrar Entrada(Producto, Cantidad)
+S -> S: Actualizar Stock
+S -> S: Guardar Movimiento en BD
+S --> Administrador: Confirmación
+@enduml

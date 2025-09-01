@@ -1,0 +1,11 @@
+@startuml
+start
+:Usuario accede al Dashboard;
+:Sistema consulta métricas en tiempo real;
+if (¿Hay datos disponibles?) then (Sí)
+  :Generar gráficos y reportes;
+else (No)
+  :Mostrar mensaje "No hay datos";
+endif
+stop
+@enduml

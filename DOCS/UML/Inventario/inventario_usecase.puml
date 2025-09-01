@@ -1,0 +1,12 @@
+@startuml
+left to right direction
+actor Administrador
+actor Empleado
+
+rectangle "Sistema de Inventario" {
+  Administrador --> (Registrar Entrada de Producto)
+  Administrador --> (Registrar Salida de Producto)
+  Empleado --> (Consultar Stock)
+  Empleado --> (Generar Reporte de Inventario)
+}
+@enduml

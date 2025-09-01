@@ -1,0 +1,23 @@
+@startuml
+title FDT - CRM y Clientes
+
+node "Módulo CRM y Clientes" {
+    node "Registrar Cliente" {
+        [Datos Personales]
+        [Historial de Contacto]
+        [Segmentación]
+    }
+
+    node "Historial de Compras" {
+        [Consultar Compras]
+        [Productos Recurrentes]
+        [Tickets Abiertos]
+    }
+
+    node "Promociones y Fidelización" {
+        [Generar Descuentos]
+        [Asignar Beneficios]
+        [Monitorear Fidelización]
+    }
+}
+@enduml

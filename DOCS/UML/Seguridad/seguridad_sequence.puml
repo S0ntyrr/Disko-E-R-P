@@ -1,0 +1,8 @@
+@startuml
+actor Administrador
+participant "Sistema" as S
+
+Administrador -> S: Crear nuevo Rol(nombre, permisos)
+S -> S: Guardar Rol en BD
+S --> Administrador: Confirmación
+@enduml
