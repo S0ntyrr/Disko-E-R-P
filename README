@@ -8,7 +8,7 @@ Este repositorio contiene la planeación, pruebas y gestión del proyecto **ERP 
 - Organizar el trabajo del equipo con **issues y tablero en GitHub Projects**.  
 - Finalizar el **Sprint 1** el **domingo 31 de agosto**, con presentación del incremento (Sprint Review).  
 
----
+
 
 ## 📌 1. Sprint Test Planning
 - Se establecieron **5 casos de prueba por Historia de Usuario (HU)** como mínimo.  
@@ -17,14 +17,14 @@ Este repositorio contiene la planeación, pruebas y gestión del proyecto **ERP 
   - Asegurar que la experiencia del usuario sea consistente.  
   - Identificar errores tempranamente en el flujo.  
 
----
+
 
 ## ✅ 2. Test Cases (Ejemplo HU-01)
 **HU-01: Login básico**  
 Como usuario quiero acceder al sistema con usuario y contraseña para ingresar al ERP.  
 
 | Caso de prueba | Entrada | Proceso | Resultado esperado |
-|----------------|---------|---------|--------------------|
+|-|||--|
 | Login válido | user/pass correctos | Validación en BD | Acceso permitido |
 | Login inválido | contraseña incorrecta | Validación en BD | Acceso denegado con mensaje |
 | Campos vacíos | Usuario o clave vacíos | Validación formulario | Mensaje de error |
@@ -33,18 +33,18 @@ Como usuario quiero acceder al sistema con usuario y contraseña para ingresar a
 
 *(Se repite para HU-02, HU-03, etc.)*
 
----
+
 
 ## 👥 3. Estrategia de Equipo
 Identificación de fortalezas y roles del equipo.  
 
 | Estrategias | Encargado |
-|-------------|-----------|
+|-|--|
 | **Aspectos técnicos** | Responsable de arquitectura, diseño de BD y código base |
 | **Comunicación** | Encargado de coordinación y reuniones de equipo |
 | **Aseguramiento de calidad** | Responsable de test cases, validación y revisiones de código |
 
----
+
 
 ## 📌 4. Product Backlog (Sprint 1)
 El backlog inicial fue exportado como **CSV** para mejor gestión.  
@@ -57,19 +57,15 @@ Ejemplo de HU creadas:
 - **HU-04:** Reportes de ventas  
 - **HU-05:** Control de acceso a clientes VIP  
 
----
+
 
 ## 🗂 5. Issues en GitHub
-Cada **Historia de Usuario (HU)** fue creada como un **issue** en GitHub.  
+Cada **Historia de Usuario (HU)** fue creada como un **issue**.  
 
 Ejemplo:  
-- [HU-01: Login básico](https://github.com/TU_USUARIO/TU_REPO/issues/1)  
-- [HU-02: Gestión de inventario](https://github.com/TU_USUARIO/TU_REPO/issues/2)  
-- [HU-03: Registro de empleados](https://github.com/TU_USUARIO/TU_REPO/issues/3)  
-
-*(los links apuntarán a tu repo real)*
-
----
+- [HU-01: Login básico](https://github.com/S0ntyrr/Disko-E-R-P/issues/1)  
+- [HU-02: Gestión de inventario](https://github.com/S0ntyrr/Disko-E-R-P/issues/2)  
+- [HU-03: Registro de empleados](https://github.com/S0ntyrr/Disko-E-R-P/issues/3)  
 
 ## 🗂 6. Tablero en GitHub Projects
 Los issues fueron conectados a un tablero **Kanban** en GitHub Projects.  
@@ -79,9 +75,7 @@ El flujo de trabajo incluye:
 - **In Progress** → HU en desarrollo.  
 - **Done** → HU completadas y probadas.  
 
-👉 [Ver tablero en GitHub Projects](https://github.com/TU_USUARIO/TU_REPO/projects)  
-
----
+👉 [Ver tablero en GitHub Projects](https://github.com/S0ntyrr/Disko-E-R-P/projects)  
 
 ## 🗓 7. Work Schedule – Sprint 1
 - 📅 **Inicio del Sprint:** Lunes 25 de agosto  
@@ -92,7 +86,7 @@ El flujo de trabajo incluye:
   - Día 6: Pruebas y validación de HU-01 a HU-05.  
   - Día 7: Preparación de Sprint Review y retrospectiva.  
 
----
+
 
 ## 🛠 Herramientas utilizadas
 - **GitHub Issues** → Gestión de Historias de Usuario.  
@@ -100,11 +94,11 @@ El flujo de trabajo incluye:
 - **CSV Backlog** → Exportación y trazabilidad.  
 - **GitHub CLI** → Creación rápida de issues y conexión con tablero.  
 
----
+
 
 ## 📢 Sprint Review
-- La presentación del incremento será el **31 de agosto**.  
+- La presentación del incremento será el **1 de Septiembre**.  
 - Se mostrará el avance en el **repositorio y tablero**.  
 
----
+
 ✨ *Equipo de desarrollo ERP Discotecas – Sprint 1*  
