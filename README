@@ -1,19 +1,18 @@
-# 📌 Proyecto ERP para Discotecas  
+📌 Proyecto ERP para Discotecas  
 
 Este repositorio contiene la planeación y ejecución del **Sprint 1** para el desarrollo del ERP.  
 El trabajo se gestiona en **GitHub Projects** y se documenta en este README.  
 
-## 📋 Sprint Test Planning  
+📋 Sprint Test Planning  
 
 Durante el Sprint 1 se priorizaron historias de usuario críticas para garantizar la funcionalidad base del sistema.  
 Cada historia de usuario cuenta con al menos 5 casos de prueba en la plataforma seleccionada.  
 
+✅ Product Backlog  
 
-## ✅ Product Backlog  
+📌 Product Backlog - Disko ERP
 
-# 📌 Product Backlog - Disko ERP
-
-## Priorización 1: MoSCoW
+ Priorización 1: MoSCoW
 | ID     | Historia de Usuario                           | Estimación | Categoría |
 |--------|-----------------------------------------------|------------|-----------|
 | HU-01  | Escaneo de ID en entrada                      | 3 pts      | Must      |
@@ -22,9 +21,9 @@ Cada historia de usuario cuenta con al menos 5 casos de prueba en la plataforma 
 | HU-04  | Reportes de asistencia semanal                | 5 pts      | Could     |
 | HU-05  | Notificación a clientes VIP                   | 3 pts      | Won’t     |
 
----
 
-## Priorización 2: WSJF
+
+ Priorización 2: WSJF
 | ID     | Historia de Usuario                           | Valor | Urgencia | Reducción de Riesgo | Esfuerzo | WSJF |
 |--------|-----------------------------------------------|-------|----------|---------------------|----------|------|
 | HU-01  | Escaneo de ID en entrada                      |   8   |    7     |          6          |    3     | 7.0  |
@@ -33,9 +32,8 @@ Cada historia de usuario cuenta con al menos 5 casos de prueba en la plataforma 
 | HU-04  | Reportes de asistencia semanal                |   5   |    3     |          4          |    5     | 2.4  |
 | HU-05  | Notificación a clientes VIP                   |   4   |    2     |          2          |    3     | 2.6  |
 
----
 
-📌 **Conclusiones de la priorización**  
+**Conclusiones de la priorización**  
 - HU-01 y HU-02 son las de **más alto valor** para el cliente → entran en Sprint 1.  
 - HU-03 se deja como **segundo sprint**, ya que es útil pero no crítico.  
 - HU-04 y HU-05 quedan en backlog de menor prioridad.  
@@ -48,14 +46,14 @@ Cada historia de usuario cuenta con al menos 5 casos de prueba en la plataforma 
 | HU-04 | Como administrador quiero ver reportes básicos de ventas. | Media | To Do |
 | HU-05 | Como usuario quiero cerrar sesión de forma segura. | Baja | To Do |
 
-> ℹ️ Cada historia se encuentra creada como **Issue en GitHub** y vinculada al tablero de gestión del Sprint.  
+> ℹ️ Cada historia se encuentra creada como **Issue** y vinculada al tablero de gestión del Sprint.  
 
 
-# Sprint Backlog – Sprint 1 (25 al 31 de agosto)
+Sprint Backlog – Sprint 1 (25 al 31 de agosto)
 
-## Historias de Usuario seleccionadas (por prioridad)
+ Historias de Usuario seleccionadas (por prioridad)
 
-### HU-01: [Login básico](https://github.com/S0ntyrr/Disko-E-R-P/issues/1) *(Alta prioridad)*
+HU-01: [Login básico](https://github.com/S0ntyrr/Disko-E-R-P/issues/1) *(Alta prioridad)*
 **Descripción:**
 Como usuario quiero acceder al sistema con usuario y contraseña para ingresar al ERP.
 
@@ -74,8 +72,7 @@ Como usuario quiero acceder al sistema con usuario y contraseña para ingresar a
 - [ ] Crear pruebas unitarias e integración del flujo de login.
 
 
-
-### HU-02: [Registro de clientes](https://github.com/S0ntyrr/Disko-E-R-P/issues/2) *(Alta prioridad)*
+HU-02: [Registro de clientes](https://github.com/S0ntyrr/Disko-E-R-P/issues/2) *(Alta prioridad)*
 **Descripción:**
 Como administrador quiero registrar clientes con sus datos para gestionar información en el sistema.
 
@@ -94,8 +91,7 @@ Como administrador quiero registrar clientes con sus datos para gestionar inform
 - [ ] Añadir pruebas unitarias e integración de registro.
 
 
-
-### HU-03: [Gestión de inventario](https://github.com/S0ntyrr/Disko-E-R-P/issues/3) *(Media prioridad)*
+HU-03: [Gestión de inventario](https://github.com/S0ntyrr/Disko-E-R-P/issues/3) *(Media prioridad)*
 **Descripción:**
 Como administrador quiero registrar y actualizar inventario para mantener el control de productos.
 
@@ -115,7 +111,7 @@ Como administrador quiero registrar y actualizar inventario para mantener el con
 
 
 
-## Plan de ejecución del Sprint
+ Plan de ejecución del Sprint
 
 - **Semana Sprint:** del 25 al 31 de agosto
 - **Cronograma:**
@@ -124,7 +120,7 @@ Como administrador quiero registrar y actualizar inventario para mantener el con
   - **Días 4–6:** Desarrollo completo de HU-03 (Inventario).
   - **Día 7:** Pruebas de integración final + preparación de Sprint Review.
 
-## 👥 Roles del Equipo y Estrategias  
+ 👥 Roles del Equipo y Estrategias  
 
 Antes de iniciar el desarrollo, se identificaron fortalezas y debilidades de cada miembro del equipo, asignando roles para liderar aspectos técnicos, organizacionales y de calidad.  
 
@@ -137,14 +133,13 @@ Antes de iniciar el desarrollo, se identificaron fortalezas y debilidades de cad
 ✅ Con esta distribución se busca balancear las responsabilidades y potenciar las fortalezas de cada miembro.  
 
 
-
-## 📅 Sprint Planning  
+ 📅 Sprint Planning  
 
 - **Duración del Sprint:** 2 semanas  
 - **Fecha de finalización:** Domingo, 31 de Agosto  
 - **Sprint Review:** Presentación del incremento del producto en la misma fecha.  
 
-### Cronograma de Actividades  
+# Cronograma de Actividades  
 
 | Tarea | Responsable | Fecha estimada | Estado |
 |-|-|-|--|
@@ -157,14 +152,14 @@ Antes de iniciar el desarrollo, se identificaron fortalezas y debilidades de cad
 
 
 
-## 📊 Gestión en GitHub  
+ 📊 Gestión en GitHub  
 
-- ✅ Issues creados por cada **Historia de Usuario**.  
-- ✅ Tablero de proyecto en **GitHub Projects** con columnas:  
+- Issues creados por cada **Historia de Usuario**.  
+- Tablero de proyecto en **GitHub Projects** con columnas:  
   - To Do  
   - In Progress  
   - Done  
-- ✅ Evidencia de avances mediante commits y pull requests.  
+- Evidencia de avances mediante commits y pull requests.  
 
 
 
