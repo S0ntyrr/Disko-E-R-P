@@ -3,19 +3,16 @@
 Este repositorio contiene la planeación y ejecución del **Sprint 1** para el desarrollo del ERP.  
 El trabajo se gestiona en **GitHub Projects** y se documenta en este README.  
 
----
-
 ## 📋 Sprint Test Planning  
 
 Durante el Sprint 1 se priorizaron historias de usuario críticas para garantizar la funcionalidad base del sistema.  
 Cada historia de usuario cuenta con al menos 5 casos de prueba en la plataforma seleccionada.  
 
----
 
 ## ✅ Product Backlog  
 
 | ID | Historia de Usuario | Prioridad | Estado |
-|----|---------------------|-----------|--------|
+|-||--|--|
 | HU-01 | Como usuario quiero acceder al sistema con usuario y contraseña para ingresar al ERP. | Alta | To Do |
 | HU-02 | Como administrador quiero registrar nuevos usuarios para gestionar accesos. | Alta | To Do |
 | HU-03 | Como usuario quiero recuperar mi contraseña en caso de olvido. | Media | To Do |
@@ -24,33 +21,93 @@ Cada historia de usuario cuenta con al menos 5 casos de prueba en la plataforma 
 
 > ℹ️ Cada historia se encuentra creada como **Issue en GitHub** y vinculada al tablero de gestión del Sprint.  
 
----
 
-## 🧪 Test Cases  
+# Sprint Backlog – Sprint 1 (25 al 31 de agosto)
 
-Ejemplo para **HU-01 (Login básico)**:  
+## Historias de Usuario seleccionadas (por prioridad)
 
-1. Ingresar credenciales correctas → Acceso concedido.  
-2. Ingresar contraseña incorrecta → Mostrar mensaje de error.  
-3. Intentar acceder sin llenar campos → Mostrar validación.  
-4. Usuario inactivo intenta loguearse → Denegar acceso.  
-5. Acceso desde dispositivo móvil → Debe funcionar correctamente.  
+### HU-01: [Login básico](https://github.com/S0ntyrr/Disko-E-R-P/issues/1) *(Alta prioridad)*
+**Descripción:**
+Como usuario quiero acceder al sistema con usuario y contraseña para ingresar al ERP.
 
----
+**Acceptance Criteria:**
+1. Valida usuario y contraseña en la base de datos.
+2. En caso de error, muestra mensaje: "Usuario o contraseña incorrectos".
+3. Contraseñas cifradas/encriptadas.
+4. Máximo de 3 intentos fallidos antes de bloquear temporalmente.
+5. Acceso exitoso redirige al dashboard principal.
+
+**Tareas técnicas:**
+- [ ] Crear el formulario de login en el frontend.
+- [ ] Crear endpoint de autenticación en el backend.
+- [ ] Implementar cifrado de contraseñas (Hash+Salt).
+- [ ] Conectar frontend con API y manejar respuestas.
+- [ ] Crear pruebas unitarias e integración del flujo de login.
+
+
+
+### HU-02: [Registro de clientes](https://github.com/S0ntyrr/Disko-E-R-P/issues/2) *(Alta prioridad)*
+**Descripción:**
+Como administrador quiero registrar clientes con sus datos para gestionar información en el sistema.
+
+**Acceptance Criteria:**
+1. Permite registrar nombre, correo, teléfono y dirección.
+2. Validación de campos obligatorios (correo válido, teléfono numérico).
+3. Cada cliente con ID único.
+4. Muestra confirmación al guardar el cliente.
+5. Cliente se almacena correctamente en la base de datos.
+
+**Tareas técnicas:**
+- [ ] Crear formulario de registro en frontend.
+- [ ] Crear endpoint REST para registrar cliente.
+- [ ] Implementar validaciones de datos en backend.
+- [ ] Persistir datos en la base de datos.
+- [ ] Añadir pruebas unitarias e integración de registro.
+
+
+
+### HU-03: [Gestión de inventario](https://github.com/S0ntyrr/Disko-E-R-P/issues/3) *(Media prioridad)*
+**Descripción:**
+Como administrador quiero registrar y actualizar inventario para mantener el control de productos.
+
+**Acceptance Criteria:**
+1. Mostrar lista de productos con cantidad disponible.
+2. Permite registrar nuevos productos (nombre, precio, stock).
+3. Actualiza stock al registrar entrades o salidas.
+4. Genera alerta cuando el stock cae por debajo del nivel mínimo.
+5. Cambios se reflejan inmediatamente en la base de datos.
+
+**Tareas técnicas:**
+- [ ] Construir interfaz de inventario en frontend.
+- [ ] Crear endpoints CRUD de inventario en backend.
+- [ ] Implementar alerta de stock bajo.
+- [ ] Sincronizar inventario con flujo de ventas/entradas.
+- [ ] Pruebas unitarias e integración del inventario.
+
+
+
+## Plan de ejecución del Sprint
+
+- **Semana Sprint:** del 25 al 31 de agosto
+- **Cronograma:**
+  - **Días 1–2:** Desarrollo completo de HU-01 (Login).
+  - **Días 2–4:** Desarrollo completo de HU-02 (Clientes).
+  - **Días 4–6:** Desarrollo completo de HU-03 (Inventario).
+  - **Día 7:** Pruebas de integración final + preparación de Sprint Review.
 
 ## 👥 Roles del Equipo y Estrategias  
 
 Antes de iniciar el desarrollo, se identificaron fortalezas y debilidades de cada miembro del equipo, asignando roles para liderar aspectos técnicos, organizacionales y de calidad.  
 
 | Estrategias / Encargado | Juan (Técnico) | Andrés (Comunicación) | Santiago (Calidad) |
-|--------------------------|----------------|------------------------|---------------------|
+|--|-|||
 | **Aspectos técnicos**   | Lidera la configuración del entorno, la arquitectura del sistema y la base de datos. Se apoya en revisiones conjuntas para evitar cuellos de botella. | Da soporte puntual en pruebas de integración y validación de requerimientos técnicos. | Supervisa que las implementaciones cumplan con estándares de código y buenas prácticas. |
 | **Comunicación**        | Comparte avances técnicos de forma documentada en GitHub y Slack. | Lidera la organización de reuniones y se asegura de que todos los miembros comprendan los objetivos del sprint. | Refuerza la comunicación en retrospectivas proponiendo mejoras al flujo de trabajo. |
 | **Aseguramiento de calidad** | Aplica pruebas unitarias en módulos desarrollados. | Recoge retroalimentación de los usuarios finales y traduce en ajustes de requerimientos. | Lidera pruebas de aceptación, revisa documentación técnica y valida entregables antes del despliegue. |
 
 ✅ Con esta distribución se busca balancear las responsabilidades y potenciar las fortalezas de cada miembro.  
 
----
+
 
 ## 📅 Sprint Planning  
 
@@ -61,7 +118,7 @@ Antes de iniciar el desarrollo, se identificaron fortalezas y debilidades de cad
 ### Cronograma de Actividades  
 
 | Tarea | Responsable | Fecha estimada | Estado |
-|-------|-------------|----------------|--------|
+|-|-|-|--|
 | Configuración de entorno y base de datos | Juan | 24 de agosto | En progreso |
 | Implementación Login (HU-01) | Juan | 26 de agosto | Pendiente |
 | Registro de usuarios (HU-02) | Juan | 28 de agosto | Pendiente |
@@ -69,7 +126,7 @@ Antes de iniciar el desarrollo, se identificaron fortalezas y debilidades de cad
 | Pruebas unitarias y de integración | Santiago | 29 de agosto | Pendiente |
 | Sprint Review y entrega final | Equipo | 31 de agosto | Pendiente |
 
----
+
 
 ## 📊 Gestión en GitHub  
 
@@ -80,6 +137,6 @@ Antes de iniciar el desarrollo, se identificaron fortalezas y debilidades de cad
   - Done  
 - ✅ Evidencia de avances mediante commits y pull requests.  
 
----
+
 
 ✨ Con esta planeación clara, el equipo asegura orden y visibilidad en el desarrollo del Sprint.
