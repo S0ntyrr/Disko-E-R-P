@@ -1,0 +1,24 @@
+@startuml
+start
+:System User requests report;
+:Select report type;
+
+if (Type == Financial?) then (yes)
+  :Fetch financial data;
+  :Generate Financial Report;
+else if (Type == HR?) then (yes)
+  :Fetch HR data;
+  :Generate HR Report;
+else if (Type == Inventory?) then (yes)
+  :Fetch inventory data;
+  :Generate Inventory Report;
+else
+  :Show error: invalid type;
+endif
+
+:Choose export format (PDF/Excel);
+:Export Report;
+:Deliver report to user;
+
+stop
+@enduml

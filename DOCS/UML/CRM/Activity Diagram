@@ -1,0 +1,16 @@
+@startuml
+start
+:Sales Agent / Support accesses CRM;
+:Search or Register Customer;
+
+if (Customer exists?) then (yes)
+  :View Customer Profile;
+  :Update Info or Log Interaction;
+else (no)
+  :Register New Customer;
+endif
+
+:Optionally add customer to campaign;
+:Generate Customer Report (if requested);
+stop
+@enduml

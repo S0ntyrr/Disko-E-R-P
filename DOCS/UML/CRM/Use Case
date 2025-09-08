@@ -1,0 +1,23 @@
+@startuml
+actor "Sales Agent" as SA
+actor "Customer Support" as CS
+actor "Marketing Manager" as MM
+
+rectangle "CRM Module" {
+  usecase "Register New Customer" as UC1
+  usecase "Update Customer Information" as UC2
+  usecase "View Customer Profile" as UC3
+  usecase "Log Customer Interaction" as UC4
+  usecase "Generate Customer Report" as UC5
+  usecase "Segment Customers for Campaigns" as UC6
+}
+
+SA --> UC1
+SA --> UC2
+SA --> UC3
+SA --> UC4
+CS --> UC3
+CS --> UC4
+MM --> UC5
+MM --> UC6
+@enduml

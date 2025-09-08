@@ -1,0 +1,42 @@
+@startuml
+class Employee {
+  +employeeID: int
+  +name: string
+  +role: string
+  +salary: float
+  +status: string
+  --
+  +clockIn()
+  +clockOut()
+}
+
+class Attendance {
+  +attendanceID: int
+  +date: Date
+  +timeIn: Time
+  +timeOut: Time
+  --
+  +generateReport()
+}
+
+class Payroll {
+  +payrollID: int
+  +baseSalary: float
+  +deductions: float
+  +netSalary: float
+  --
+  +calculatePayroll()
+  +exportReport()
+}
+
+class HRManager {
+  +managerID: int
+  +name: string
+  --
+  +approvePayroll()
+}
+
+Employee "1" -- "many" Attendance
+Employee "1" -- "1" Payroll
+HRManager "1" -- "many" Payroll
+@enduml

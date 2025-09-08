@@ -1,0 +1,16 @@
+@startuml
+actor "Sales Agent" as SA
+participant "CRM System" as CRM
+participant "Database" as DB
+participant "Report Generator" as RG
+
+SA -> CRM: Search Customer
+CRM -> DB: Query Customer Data
+DB --> CRM: Return Customer Info
+SA -> CRM: Log New Interaction
+CRM -> DB: Save Interaction Record
+SA -> CRM: Request Customer Report
+CRM -> RG: Generate Report
+RG --> CRM: Report Ready
+CRM -> SA: Deliver Report
+@enduml
