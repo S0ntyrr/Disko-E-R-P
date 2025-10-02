@@ -1,0 +1,23 @@
+@startuml
+title FDT - Inventario y Almacén
+
+node "Módulo Inventario y Almacén" {
+    node "Registrar Producto" {
+        [Código de Producto]
+        [Categoría]
+        [Precio Unitario]
+    }
+
+    node "Control de Stock" {
+        [Verificar Niveles]
+        [Stock Mínimo]
+        [Generar Alertas]
+    }
+
+    node "Movimientos de Inventario" {
+        [Entrada de Mercancía]
+        [Salida de Mercancía]
+        [Transferencias entre Almacenes]
+    }
+}
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+component "Frontend (React/.NET)" as FE
+component "Backend (API .NET)" as BE
+component "Base de Datos (SQL Server)" as DB
+component "Contenedores Docker" as Docker
+component "Servidor IIS" as IIS
+
+FE --> BE
+BE --> DB
+FE --> Docker
+BE --> Docker
+Docker --> IIS
+@enduml

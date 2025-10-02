@@ -1,0 +1,89 @@
+# Disko-E-R-P  
+E R P para discotecas / Sistema de gestión para clubes
+## 🔍 Visión general
+
+Disko-E-R-P es un sistema modular pensado para la gestión integral de discotecas: manejo de usuarios, control de acceso, reportes de ventas, administración de roles, entre otros. Este repositorio contiene la planificación y desarrollo del **Sprint 1**, con enfoque en las funcionalidades básicas mínimas para comenzar a iterar.
+
+
+## 📁 Estructura del repositorio
+
+- `README.md` — este documento, actualizado con la visión del proyecto, guías y estados.  
+- `erp_discotecas_backlog.csv` — backlog del proyecto con historias de usuario y prioridades.  
+- Carpeta `DOCS` — documentación adicional, diagramas, especificaciones, etc.  
+- (Otras carpetas de código fuente, módulos, tests, etc.)
+
+
+## 🏃 Sprint 1 — Qué abordamos
+
+En este primer sprint priorizamos funcionalidades base para permitir que el sistema arranque con lo esencial:
+
+### 🧾 Product Backlog (Sprint 1)
+
+| ID     | Historia de Usuario                                                                 | Prioridad | Estado |
+|--------|----------------------------------------------------------------------------------------|-----------|--------|
+| HU-01  | Como usuario quiero iniciar sesión con usuario y contraseña                           | Alta      | To Do |
+| HU-02  | Como administrador quiero registrar nuevos usuarios                                   | Alta      | To Do |
+| HU-03  | Como usuario quiero recuperar mi contraseña                                          | Media     | To Do |
+| HU-04  | Como administrador quiero ver reportes básicos de ventas                             | Media     | To Do |
+| HU-05  | Como usuario quiero cerrar sesión de forma segura                                   | Baja      | To Do |
+
+> 🚀 Cada historia está representada como un **Issue de GitHub** y vinculada al tablero de gestión del Sprint.
+
+### 📌 Casos de prueba (ejemplo: HU-01 — Login)
+
+1. Ingresar credenciales correctas → acceso permitido.  
+2. Ingresar contraseña incorrecta → mensaje de error.  
+3. Intentar iniciar sesión sin completar campos → validaciones visibles.  
+4. Usuario inactivo intenta ingresar → acceso denegado.  
+5. Ingresar desde dispositivo móvil → debe funcionar correctamente.
+
+(Puedes agregar casos de prueba para las demás historias igual que este.)
+
+
+## 👥 Roles del equipo y responsabilidades
+
+| Área / Rol                         | Juan (Técnico)                                               | Andrés (Comunicación)                                   | Santiago (Calidad)                                               |
+|-----------------------------------|--------------------------------------------------------------|-----------------------------------------------------------|------------------------------------------------------------------|
+| **Técnico / arquitectura**         | Configura entorno, base de datos y define arquitectura       | Apoya integración, traduce necesidades técnicas           | Asegura estándares, revisa calidad de código                     |
+| **Comunicación / coordinación**    | Documenta avances técnicos en repositorio y slack            | Organiza reuniones, coordina entendimiento del equipo     | Recoge feedback de usuarios y lo traduce en sugerencias          |
+| **Aseguramiento de calidad**       | Escribe pruebas unitarias en módulos entregados             | Colabora en pruebas funcionales y de integración          | Lidera pruebas de aceptación y revisión final de entregables     |
+
+Con esta distribución se busca aprovechar las fortalezas de cada miembro y mantener claridad en responsabilidades.
+
+
+## 🗓️ Planificación del Sprint
+
+- **Duración:** 2 semanas  
+- **Fecha de entrega estimada:** Domingo, 31 de Agosto  
+- **Sprint Review:** Presentación del incremento al final del sprint
+
+#### Cronograma estimado
+
+| Tarea                                          | Responsable | Fecha estimada | Estado        |
+|------------------------------------------------|-------------|----------------|----------------|
+| Configuración de entorno & base de datos        | Juan        | 24 de agosto   | En progreso     |
+| Implementación de login (HU-01)                 | Juan        | 26 de agosto   | Pendiente       |
+| Registro de usuarios (HU-02)                    | Juan        | 28 de agosto   | Pendiente       |
+| Documentación & comunicación de avances          | Andrés      | Durante todo el sprint | En progreso |
+| Pruebas unitarias y de integración               | Santiago    | 29 de agosto   | Pendiente       |
+| Sprint Review y entrega del incremento final     | Equipo      | 31 de agosto   | Pendiente       |
+
+
+## 🛠️ Gestión y flujo en GitHub
+
+- Cada historia de usuario está representada como un **Issue**  
+- Se usa **GitHub Projects** para visualizar el flujo de trabajo (columnas: To Do, In Progress, Done)  
+- Se documentan avances mediante *commits*, *branches* y *pull requests*  
+
+
+## 📌 Próximos pasos (horizonte)
+
+- Completar las historias del Sprint 1  
+- Realizar pruebas integradas y ajustes según feedback  
+- Planear Sprint 2, incluyendo módulos intermedios (inventario, caja, clientes, reservas, etc.)  
+- Refinar documentación técnica y agregar diagramas de arquitectura  
+
+
+## 📄 Créditos
+
+- Autores / colaboradores: (Juan, Andres y Santiago)  

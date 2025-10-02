@@ -1,0 +1,16 @@
+@startuml
+actor "HR Manager" as HR
+participant "System" as SYS
+participant "Payroll Module" as PAY
+participant "Database" as DB
+
+HR -> SYS: Request Payroll Calculation
+SYS -> PAY: Start Calculation
+PAY -> DB: Fetch Employee Data
+DB --> PAY: Employee Records
+PAY -> PAY: Calculate Salaries (base - deductions + benefits)
+PAY -> DB: Save Payroll Results
+DB --> PAY: Confirmation
+PAY --> SYS: Payroll Report Generated
+SYS --> HR: Display Payroll Report
+@enduml

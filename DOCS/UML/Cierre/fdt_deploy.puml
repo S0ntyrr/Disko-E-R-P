@@ -1,0 +1,23 @@
+@startuml
+title FDT - Deploy y Cierre
+
+node "Módulo Deploy y Cierre" {
+    node "Contenedores Docker" {
+        [Dockerfile Backend]
+        [Dockerfile Frontend]
+        [Docker Compose]
+    }
+
+    node "Servidor IIS" {
+        [Configuración del Hosting]
+        [Gestión de Certificados SSL]
+        [Balanceo de Carga]
+    }
+
+    node "Monitoreo Post-Deploy" {
+        [Logs de Errores]
+        [Métricas de Uso]
+        [Alertas de Caída]
+    }
+}
+@enduml

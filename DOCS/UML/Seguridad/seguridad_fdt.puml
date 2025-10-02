@@ -1,0 +1,15 @@
+@startuml
+@startmindmap
+* Seguridad y Roles
+** Gestión de Roles
+*** Crear Rol
+*** Editar Rol
+*** Eliminar Rol
+** Gestión de Permisos
+*** Asignar Permisos a Rol
+*** Revocar Permisos
+** Control de Sesión
+*** Login
+*** Restricciones según Rol
+@endmindmap
+@enduml

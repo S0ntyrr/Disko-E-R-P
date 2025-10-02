@@ -1,0 +1,21 @@
+@startuml
+class Factura {
+  -id: int
+  -fecha: Date
+  -total: double
+}
+
+class Producto {
+  -id: int
+  -nombre: string
+  -precio: double
+}
+
+class LineaFactura {
+  -cantidad: int
+  -subtotal: double
+}
+
+Factura "1" -- "0..*" LineaFactura
+LineaFactura "1" -- "1" Producto
+@enduml
