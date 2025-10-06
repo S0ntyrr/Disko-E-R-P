@@ -1,0 +1,57 @@
+@startuml Modulo_Recursos_Humanos
+
+!define TABLE_ENTITY class
+hide methods
+hide stereotypes
+
+package "Módulo Recursos Humanos" {
+  TABLE_ENTITY Empleado {
+    {field} id: UUID
+    {field} usuario_id: UUID
+    {field} departamento_id: UUID
+    {field} puesto: STRING
+    {field} fecha_contratacion: DATE
+    {field} salario: DECIMAL
+    {field} estado: ENUM(activo,inactivo,vacaciones)
+    {field} created_at: TIMESTAMP
+  }
+
+  TABLE_ENTITY Departamento {
+    {field} id: UUID
+    {field} nombre: STRING
+    {field} descripcion: TEXT
+    {field} jefe_departamento_id: UUID
+    {field} estado: ENUM(activo,inactivo)
+    {field} created_at: TIMESTAMP
+  }
+
+  TABLE_ENTITY Asistencia {
+    {field} id: UUID
+    {field} empleado_id: UUID
+    {field} fecha: DATE
+    {field} hora_entrada: TIME
+    {field} hora_salida: TIME
+    {field} estado: ENUM(presente,ausente,tardanza)
+    {field} created_at: TIMESTAMP
+  }
+
+  TABLE_ENTITY Nomina {
+    {field} id: UUID
+    {field} empleado_id: UUID
+    {field} periodo: STRING
+    {field} salario_bruto: DECIMAL
+    {field} deducciones: DECIMAL
+    {field} salario_neto: DECIMAL
+    {field} estado: ENUM(calculada,pagada)
+    {field} created_at: TIMESTAMP
+  }
+}
+
+' Relaciones
+Empleado }|--|| Usuario : usuario_id
+Empleado }|--|| Departamento : departamento_id
+Departamento }|--|| Empleado : jefe_departamento_id
+Asistencia }|--|| Empleado : empleado_id
+Nomina }|--|| Empleado : empleado_id
+
+@enduml

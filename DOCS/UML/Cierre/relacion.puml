@@ -1,0 +1,47 @@
+@startuml Modulo_Cierre
+
+!define TABLE_ENTITY class
+hide methods
+hide stereotypes
+
+package "Módulo Cierre" {
+  TABLE_ENTITY CierreDiario {
+    {field} id: UUID
+    {field} fecha: DATE
+    {field} usuario_id: UUID
+    {field} total_ventas: DECIMAL
+    {field} total_efectivo: DECIMAL
+    {field} total_tarjeta: DECIMAL
+    {field} diferencia: DECIMAL
+    {field} estado: ENUM(abierto,cerrado)
+    {field} created_at: TIMESTAMP
+  }
+
+  TABLE_ENTITY CierreMensual {
+    {field} id: UUID
+    {field} mes: INTEGER
+    {field} año: INTEGER
+    {field} total_ventas: DECIMAL
+    {field} total_compras: DECIMAL
+    {field} utilidad_bruta: DECIMAL
+    {field} gastos_operativos: DECIMAL
+    {field} utilidad_neta: DECIMAL
+    {field} estado: ENUM(procesado,cerrado)
+    {field} created_at: TIMESTAMP
+  }
+
+  TABLE_ENTITY ArqueoCaja {
+    {field} id: UUID
+    {field} cierre_diario_id: UUID
+    {field} denominacion: DECIMAL
+    {field} cantidad: INTEGER
+    {field} subtotal: DECIMAL
+    {field} created_at: TIMESTAMP
+  }
+}
+
+' Relaciones
+CierreDiario }|--|| Usuario : usuario_id
+ArqueoCaja }|--|| CierreDiario : cierre_diario_id
+
+@enduml

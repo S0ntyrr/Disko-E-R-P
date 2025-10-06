@@ -1,0 +1,60 @@
+@startuml Modulo_Inventario
+
+!define TABLE_ENTITY class
+hide methods
+hide stereotypes
+
+package "Módulo Inventario" {
+  TABLE_ENTITY Producto {
+    {field} id: UUID
+    {field} codigo: STRING
+    {field} nombre: STRING
+    {field} descripcion: TEXT
+    {field} categoria_id: UUID
+    {field} precio_compra: DECIMAL
+    {field} precio_venta: DECIMAL
+    {field} stock_actual: INTEGER
+    {field} stock_minimo: INTEGER
+    {field} estado: ENUM(activo,inactivo)
+    {field} created_at: TIMESTAMP
+    {field} updated_at: TIMESTAMP
+  }
+
+  TABLE_ENTITY Categoria {
+    {field} id: UUID
+    {field} nombre: STRING
+    {field} descripcion: TEXT
+    {field} categoria_padre_id: UUID
+    {field} estado: ENUM(activo,inactivo)
+    {field} created_at: TIMESTAMP
+  }
+
+  TABLE_ENTITY Kardex {
+    {field} id: UUID
+    {field} producto_id: UUID
+    {field} fecha: DATE
+    {field} tipo_movimiento: ENUM(entrada,salida)
+    {field} cantidad: INTEGER
+    {field} saldo: INTEGER
+    {field} documento_tipo: STRING
+    {field} documento_id: UUID
+    {field} created_at: TIMESTAMP
+  }
+
+  TABLE_ENTITY Almacen {
+    {field} id: UUID
+    {field} nombre: STRING
+    {field} direccion: STRING
+    {field} responsable_id: UUID
+    {field} estado: ENUM(activo,inactivo)
+    {field} created_at: TIMESTAMP
+  }
+}
+
+' Relaciones
+Producto }|--|| Categoria : categoria_id
+Categoria }|--o{ Categoria : categoria_padre_id
+Producto ||--o{ Kardex : producto_id
+Almacen }|--|| Usuario : responsable_id
+
+@enduml
