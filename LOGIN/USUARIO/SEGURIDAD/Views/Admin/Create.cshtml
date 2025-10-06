@@ -1,0 +1,10 @@
+@model Usuario
+<h2>Crear Usuario</h2>
+<form asp-action="Create" method="post">
+    <input name="NombreCompleto" placeholder="Nombre Completo" required />
+    <input name="Email" placeholder="Email" required />
+    <input name="NombreUsuario" placeholder="Usuario" required />
+    <input name="PasswordHash" type="password" placeholder="Contraseña" required />
+    <input name="RolId" type="number" placeholder="RolId" required />
+    <button type="submit">Crear</button>
+</form>

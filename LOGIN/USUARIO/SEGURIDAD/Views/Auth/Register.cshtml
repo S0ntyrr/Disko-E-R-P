@@ -1,0 +1,12 @@
+@model LoginDto
+
+<h2>Registro de Usuario</h2>
+<form asp-action="Register" method="post">
+    <input type="text" name="Nombre" placeholder="Nombre" required />
+    <input type="text" name="Apellido" placeholder="Apellido" required />
+    <input type="email" name="Correo" placeholder="Correo" required />
+    <input type="text" name="Cargo" placeholder="Cargo" required />
+    <input type="password" name="Password" placeholder="Contraseña" required />
+    <input type="password" name="ConfirmPassword" placeholder="Confirmar Contraseña" required />
+    <button type="submit">Registrar</button>
+</form>

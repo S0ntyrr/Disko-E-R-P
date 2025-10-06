@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LOGIN", "LOGIN", "{5229CFBD-ECAE-F2CA-547A-28A8A976D337}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "USUARIO", "USUARIO", "{7961ECA6-CDF4-D020-B828-D60B5268250E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiskoERP", "LOGIN\USUARIO\SEGURIDAD\DiskoERP.csproj", "{4250DA6A-863B-B4AB-1FF7-880091156DE8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4250DA6A-863B-B4AB-1FF7-880091156DE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4250DA6A-863B-B4AB-1FF7-880091156DE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4250DA6A-863B-B4AB-1FF7-880091156DE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4250DA6A-863B-B4AB-1FF7-880091156DE8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7961ECA6-CDF4-D020-B828-D60B5268250E} = {5229CFBD-ECAE-F2CA-547A-28A8A976D337}
+		{4250DA6A-863B-B4AB-1FF7-880091156DE8} = {7961ECA6-CDF4-D020-B828-D60B5268250E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C7F950C6-BADB-491C-923B-6BFE4AD74317}
+	EndGlobalSection
+EndGlobal

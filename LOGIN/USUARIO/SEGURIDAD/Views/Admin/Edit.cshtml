@@ -1,0 +1,12 @@
+@model Usuario
+<h2>Editar Usuario</h2>
+<form asp-action="Edit" method="post">
+    <input type="hidden" name="UsuarioId" value="@Model.UsuarioId" />
+    <input name="NombreCompleto" value="@Model.NombreCompleto" required />
+    <input name="Email" value="@Model.Email" required />
+    <input name="NombreUsuario" value="@Model.NombreUsuario" required />
+    <input name="PasswordHash" type="password" placeholder="Nueva Contraseña (opcional)" />
+    <input name="RolId" type="number" value="@Model.RolId" required />
+    <input name="Estado" value="@Model.Estado" required />
+    <button type="submit">Actualizar</button>
+</form>

@@ -1,0 +1,23 @@
+@model IEnumerable<Usuario>
+<h2>Usuarios</h2>
+<a href="/Admin/Create">Crear Usuario</a>
+<table>
+    <tr>
+        <th>ID</th><th>Nombre</th><th>Email</th><th>Usuario</th><th>Rol</th><th>Estado</th><th>Acciones</th>
+    </tr>
+    @foreach(var u in Model)
+    {
+        <tr>
+            <td>@u.UsuarioId</td>
+            <td>@u.NombreCompleto</td>
+            <td>@u.Email</td>
+            <td>@u.NombreUsuario</td>
+            <td>@u.RolId</td>
+            <td>@u.Estado</td>
+            <td>
+                <a href="/Admin/Edit/@u.UsuarioId">Editar</a>
+                <a href="/Admin/Delete/@u.UsuarioId">Borrar</a>
+            </td>
+        </tr>
+    }
+</table>
