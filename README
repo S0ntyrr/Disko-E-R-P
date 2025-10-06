@@ -1,89 +1,282 @@
-# Disko-E-R-P  
-E R P para discotecas / Sistema de gestión para clubes
-## 🔍 Visión general
+Disko E.R.P - Sistema de Gestión Empresarial
+https://img.shields.io/badge/Version-1.0.0-blue.svg
+https://img.shields.io/badge/Java-17-orange.svg
+https://img.shields.io/badge/Spring%2520Boot-3.0-green.svg
+https://img.shields.io/badge/MySQL-8.0-blue.svg
 
-Disko-E-R-P es un sistema modular pensado para la gestión integral de discotecas: manejo de usuarios, control de acceso, reportes de ventas, administración de roles, entre otros. Este repositorio contiene la planificación y desarrollo del **Sprint 1**, con enfoque en las funcionalidades básicas mínimas para comenzar a iterar.
+📋 Tabla de Contenidos
+Descripción
 
+Características Principales
 
-## 📁 Estructura del repositorio
+Requisitos del Sistema
 
-- `README.md` — este documento, actualizado con la visión del proyecto, guías y estados.  
-- `erp_discotecas_backlog.csv` — backlog del proyecto con historias de usuario y prioridades.  
-- Carpeta `DOCS` — documentación adicional, diagramas, especificaciones, etc.  
-- (Otras carpetas de código fuente, módulos, tests, etc.)
+Instalación y Configuración
 
+Configuración de la Base de Datos
 
-## 🏃 Sprint 1 — Qué abordamos
+Sistema de Login
 
-En este primer sprint priorizamos funcionalidades base para permitir que el sistema arranque con lo esencial:
+Estructura del Proyecto
 
-### 🧾 Product Backlog (Sprint 1)
+Uso de la Aplicación
 
-| ID     | Historia de Usuario                                                                 | Prioridad | Estado |
-|--------|----------------------------------------------------------------------------------------|-----------|--------|
-| HU-01  | Como usuario quiero iniciar sesión con usuario y contraseña                           | Alta      | To Do |
-| HU-02  | Como administrador quiero registrar nuevos usuarios                                   | Alta      | To Do |
-| HU-03  | Como usuario quiero recuperar mi contraseña                                          | Media     | To Do |
-| HU-04  | Como administrador quiero ver reportes básicos de ventas                             | Media     | To Do |
-| HU-05  | Como usuario quiero cerrar sesión de forma segura                                   | Baja      | To Do |
+Despliegue
 
-> 🚀 Cada historia está representada como un **Issue de GitHub** y vinculada al tablero de gestión del Sprint.
+Solución de Problemas
 
-### 📌 Casos de prueba (ejemplo: HU-01 — Login)
+🚀 Descripción
+Disko E.R.P es un sistema de planificación de recursos empresariales desarrollado en Java con Spring Boot que permite gestionar múltiples aspectos de una empresa de manera integrada.
 
-1. Ingresar credenciales correctas → acceso permitido.  
-2. Ingresar contraseña incorrecta → mensaje de error.  
-3. Intentar iniciar sesión sin completar campos → validaciones visibles.  
-4. Usuario inactivo intenta ingresar → acceso denegado.  
-5. Ingresar desde dispositivo móvil → debe funcionar correctamente.
+✨ Características Principales
+🔐 Sistema de Autenticación Segura
 
-(Puedes agregar casos de prueba para las demás historias igual que este.)
+👥 Gestión de Usuarios y Roles
 
+📦 Gestión de Inventario
 
-## 👥 Roles del equipo y responsabilidades
+💰 Módulo de Ventas y Facturación
 
-| Área / Rol                         | Juan (Técnico)                                               | Andrés (Comunicación)                                   | Santiago (Calidad)                                               |
-|-----------------------------------|--------------------------------------------------------------|-----------------------------------------------------------|------------------------------------------------------------------|
-| **Técnico / arquitectura**         | Configura entorno, base de datos y define arquitectura       | Apoya integración, traduce necesidades técnicas           | Asegura estándares, revisa calidad de código                     |
-| **Comunicación / coordinación**    | Documenta avances técnicos en repositorio y slack            | Organiza reuniones, coordina entendimiento del equipo     | Recoge feedback de usuarios y lo traduce en sugerencias          |
-| **Aseguramiento de calidad**       | Escribe pruebas unitarias en módulos entregados             | Colabora en pruebas funcionales y de integración          | Lidera pruebas de aceptación y revisión final de entregables     |
+📊 Reportes y Dashboard
 
-Con esta distribución se busca aprovechar las fortalezas de cada miembro y mantener claridad en responsabilidades.
+🏢 Gestión de Clientes y Proveedores
 
+🔒 Control de Acceso por Roles
 
-## 🗓️ Planificación del Sprint
+🛠 Requisitos del Sistema
+Software Requerido
+Java JDK 17 o superior
 
-- **Duración:** 2 semanas  
-- **Fecha de entrega estimada:** Domingo, 31 de Agosto  
-- **Sprint Review:** Presentación del incremento al final del sprint
+MySQL 8.0 o superior
 
-#### Cronograma estimado
+Maven 3.6 o superior
 
-| Tarea                                          | Responsable | Fecha estimada | Estado        |
-|------------------------------------------------|-------------|----------------|----------------|
-| Configuración de entorno & base de datos        | Juan        | 24 de agosto   | En progreso     |
-| Implementación de login (HU-01)                 | Juan        | 26 de agosto   | Pendiente       |
-| Registro de usuarios (HU-02)                    | Juan        | 28 de agosto   | Pendiente       |
-| Documentación & comunicación de avances          | Andrés      | Durante todo el sprint | En progreso |
-| Pruebas unitarias y de integración               | Santiago    | 29 de agosto   | Pendiente       |
-| Sprint Review y entrega del incremento final     | Equipo      | 31 de agosto   | Pendiente       |
+Git para clonar el repositorio
 
+Dependencias Principales
+Spring Boot 3.0+
 
-## 🛠️ Gestión y flujo en GitHub
+Spring Security
 
-- Cada historia de usuario está representada como un **Issue**  
-- Se usa **GitHub Projects** para visualizar el flujo de trabajo (columnas: To Do, In Progress, Done)  
-- Se documentan avances mediante *commits*, *branches* y *pull requests*  
+Spring Data JPA
 
+MySQL Connector
 
-## 📌 Próximos pasos (horizonte)
+JWT para autenticación
 
-- Completar las historias del Sprint 1  
-- Realizar pruebas integradas y ajustes según feedback  
-- Planear Sprint 2, incluyendo módulos intermedios (inventario, caja, clientes, reservas, etc.)  
-- Refinar documentación técnica y agregar diagramas de arquitectura  
+Thymeleaf (opcional para vistas web)
 
+📥 Instalación y Configuración
+1. Clonar el Repositorio
+bash
+git clone https://github.com/S0ntyrr/Disko-E-R-P.git
+cd Disko-E-R-P
+2. Configurar el Entorno
+Asegúrate de tener Java 17 instalado:
 
-## 📄 Créditos
+bash
+java -version
+3. Compilar el Proyecto
+bash
+mvn clean install
+4. Ejecutar la Aplicación
+bash
+mvn spring-boot:run
+O compilar el JAR y ejecutar:
 
-- Autores / colaboradores: (Juan, Andres y Santiago)  
+bash
+mvn clean package
+java -jar target/disko-erp-1.0.0.jar
+🗄 Configuración de la Base de Datos
+1. Crear Base de Datos MySQL
+sql
+CREATE DATABASE disko_erp;
+CREATE USER 'disko_user'@'localhost' IDENTIFIED BY 'tu_password_seguro';
+GRANT ALL PRIVILEGES ON disko_erp.* TO 'disko_user'@'localhost';
+FLUSH PRIVILEGES;
+2. Configurar Application Properties
+Crea el archivo src/main/resources/application.properties:
+
+properties
+# Configuración de Base de Datos
+spring.datasource.url=jdbc:mysql://localhost:3306/disko_erp
+spring.datasource.username=disko_user
+spring.datasource.password=tu_password_seguro
+
+# Configuración JPA/Hibernate
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+
+# Configuración del Servidor
+server.port=8080
+spring.application.name=Disko-ERP
+
+# Configuración de Seguridad
+jwt.secret=tu_jwt_secret_muy_seguro_y_largo
+jwt.expiration=86400000
+
+# Configuración de Logging
+logging.level.com.disko.erp=DEBUG
+3. Ejecutar Migraciones (si aplica)
+La aplicación creará automáticamente las tablas necesarias al iniciar con ddl-auto=update.
+
+🔐 Sistema de Login
+Características de Seguridad
+Autenticación JWT (JSON Web Tokens)
+
+Encriptación de contraseñas con BCrypt
+
+Control de sesiones
+
+Protección contra CSRF
+
+Configuración de CORS
+
+Usuarios por Defecto
+Al iniciar por primera vez, se crean usuarios predeterminados:
+
+Administrador:
+
+Usuario: admin
+
+Contraseña: admin123
+
+Rol: ADMIN
+
+Usuario Regular:
+
+Usuario: usuario
+
+Contraseña: user123
+
+Rol: USER
+
+Endpoints de Autenticación
+http
+POST /api/auth/login
+Content-Type: application/json
+
+{
+  "username": "tu_usuario",
+  "password": "tu_contraseña"
+}
+Respuesta:
+
+json
+{
+  "token": "jwt_token",
+  "username": "tu_usuario",
+  "roles": ["ROLE_USER"],
+  "expiresIn": 86400000
+}
+Configuración de Roles
+ROLE_ADMIN: Acceso completo al sistema
+
+ROLE_USER: Acceso limitado a módulos básicos
+
+ROLE_MANAGER: Acceso a gestión y reportes
+🖥 Uso de la Aplicación
+1. Acceder al Sistema
+Abre tu navegador y ve a: http://localhost:8080
+
+Ingresa tus credenciales en el formulario de login
+
+2. Navegación Principal
+Dashboard: Vista general del sistema
+
+Usuarios: Gestión de usuarios y permisos
+
+Inventario: Control de productos y stock
+
+Ventas: Procesos de venta y facturación
+
+Reportes: Generación de reportes y estadísticas
+
+3. Funciones por Módulo
+Módulo de Usuarios
+Crear, editar y eliminar usuarios
+
+Asignar roles y permisos
+
+Gestionar perfiles de usuario
+
+Módulo de Inventario
+Gestionar categorías de productos
+
+Control de stock y alertas
+
+Movimientos de inventario
+
+Módulo de Ventas
+Procesar órdenes de venta
+
+Generar facturas
+
+Gestión de clientes
+
+🚀 Despliegue
+Despliegue en Producción
+Configuración de Producción:
+
+properties
+spring.profiles.active=prod
+spring.jpa.hibernate.ddl-auto=validate
+Variables de Entorno:
+
+bash
+export DATABASE_URL=tu_url_de_produccion
+export DATABASE_USERNAME=tu_usuario
+export DATABASE_PASSWORD=tu_password
+export JWT_SECRET=tu_jwt_secret_seguro
+Ejecutar en Producción:
+
+bash
+java -jar -Dspring.profiles.active=prod disko-erp-1.0.0.jar
+Docker (Opcional)
+dockerfile
+FROM openjdk:17-jdk-slim
+COPY target/disko-erp-1.0.0.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/app.jar"]
+🐛 Solución de Problemas
+Problemas Comunes
+Error de Conexión a BD:
+
+Verifica que MySQL esté ejecutándose
+
+Confirma credenciales en application.properties
+
+Asegura que la base de datos exista
+
+Puerto en Uso:
+
+bash
+# Verificar procesos en puerto 8080
+netstat -ano | findstr :8080
+# Cambiar puerto en application.properties
+server.port=8081
+Problemas de Autenticación:
+
+Verificar que los usuarios estén creados
+
+Revisar configuración de JWT
+
+Verificar encriptación de contraseñas
+
+Logs y Debugging
+Habilita logs detallados en application.properties:
+
+properties
+logging.level.org.springframework.security=DEBUG
+logging.level.com.disko.erp=DEBUG
+🤝 Contribución
+Fork el proyecto
+
+Crea una rama para tu feature (git checkout -b feature/AmazingFeature)
+
+Commit tus cambios (git commit -m 'Add some AmazingFeature')
+
+Push a la rama (git push origin feature/AmazingFeature)
+
+Abre un Pull Request

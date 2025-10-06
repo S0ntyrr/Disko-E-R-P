@@ -109,6 +109,15 @@ namespace DiskoERP.Core.Services.Implementations
             return true;
         }
 
+        public async Task<Usuario> ValidateUserAsync(LoginDto model)
+        {
+            var usuario = await _context.Usuarios
+                .FirstOrDefaultAsync(u => u.NombreUsuario == model.NombreUsuario && u.Estado == "Activo");
+            if (usuario != null && VerificarPassword(model.Password, usuario.PasswordHash, usuario.PasswordSalt))
+                return usuario;
+            return null;
+        }
+
         private string GenerarToken(UsuarioDto usuario)
         {
             var jwtSettings = _configuration.GetSection("Jwt");

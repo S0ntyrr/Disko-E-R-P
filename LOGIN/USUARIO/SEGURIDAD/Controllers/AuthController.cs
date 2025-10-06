@@ -10,11 +10,13 @@ namespace DiskoERP.Web.Controllers
     {
         private readonly IAuthService _authService;
         private readonly ILogger<AuthController> _logger;
+        private readonly ApplicationDbContext _context; // Agregado para el acceso a datos
 
-        public AuthController(IAuthService authService, ILogger<AuthController> logger)
+        public AuthController(IAuthService authService, ILogger<AuthController> logger, ApplicationDbContext context)
         {
             _authService = authService;
             _logger = logger;
+            _context = context;
         }
 
         // GET: /Auth/Login
@@ -183,6 +185,14 @@ namespace DiskoERP.Web.Controllers
                 ModelState.AddModelError("", "Error al registrar usuario");
             }
             return View(model);
+        }
+
+        // GET: /Auth/TestDb
+        [HttpGet]
+        public IActionResult TestDb()
+        {
+            var usuarios = _context.Usuarios.Take(1).ToList();
+            return Content($"Usuarios encontrados: {usuarios.Count}");
         }
     }
 }
