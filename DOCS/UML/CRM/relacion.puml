@@ -1,0 +1,50 @@
+@startuml Modulo_CRM
+
+!define TABLE_ENTITY class
+hide methods
+hide stereotypes
+
+package "Módulo CRM" {
+  TABLE_ENTITY Prospecto {
+    {field} id: UUID
+    {field} nombre: STRING
+    {field} email: STRING
+    {field} telefono: STRING
+    {field} empresa: STRING
+    {field} origen: STRING
+    {field} estado: ENUM(nuevo,contactado,interesado,cliente)
+    {field} usuario_asignado_id: UUID
+    {field} created_at: TIMESTAMP
+  }
+
+  TABLE_ENTITY Oportunidad {
+    {field} id: UUID
+    {field} prospecto_id: UUID
+    {field} nombre: STRING
+    {field} monto_estimado: DECIMAL
+    {field} etapa: ENUM(calificacion,propuesta,negociacion,cerrada)
+    {field} fecha_cierre_estimada: DATE
+    {field} usuario_asignado_id: UUID
+    {field} created_at: TIMESTAMP
+  }
+
+  TABLE_ENTITY ActividadCRM {
+    {field} id: UUID
+    {field} oportunidad_id: UUID
+    {field} tipo: ENUM(llamada,reunion,email,tarea)
+    {field} descripcion: TEXT
+    {field} fecha: DATETIME
+    {field} usuario_id: UUID
+    {field} estado: ENUM(completada,pending)
+    {field} created_at: TIMESTAMP
+  }
+}
+
+' Relaciones
+Prospecto }|--|| Usuario : usuario_asignado_id
+Oportunidad }|--|| Prospecto : prospecto_id
+Oportunidad }|--|| Usuario : usuario_asignado_id
+ActividadCRM }|--|| Oportunidad : oportunidad_id
+ActividadCRM }|--|| Usuario : usuario_id
+
+@enduml

@@ -1,0 +1,66 @@
+@startuml Relaciones_Completas_DiskoERP
+
+!define TABLE_ENTITY class
+hide methods
+hide stereotypes
+hide fields
+
+' Incluir todos los módulos
+left to right direction
+
+package "Seguridad" {
+  TABLE_ENTITY Usuario
+  TABLE_ENTITY Rol
+  TABLE_ENTITY Permiso
+  TABLE_ENTITY RolPermiso
+}
+
+package "Inventario" {
+  TABLE_ENTITY Producto
+  TABLE_ENTITY Categoria
+  TABLE_ENTITY Kardex
+  TABLE_ENTITY Almacen
+}
+
+package "Facturación" {
+  TABLE_ENTITY Factura
+  TABLE_ENTITY DetalleFactura
+  TABLE_ENTITY Cliente
+  TABLE_ENTITY SecuenciaFactura
+}
+
+package "CRM" {
+  TABLE_ENTITY Prospecto
+  TABLE_ENTITY Oportunidad
+  TABLE_ENTITY ActividadCRM
+}
+
+package "Recursos Humanos" {
+  TABLE_ENTITY Empleado
+  TABLE_ENTITY Departamento
+  TABLE_ENTITY Asistencia
+  TABLE_ENTITY Nomina
+}
+
+package "Cierre" {
+  TABLE_ENTITY CierreDiario
+  TABLE_ENTITY CierreMensual
+  TABLE_ENTITY ArqueoCaja
+}
+
+package "Reportes" {
+  TABLE_ENTITY Reporte
+  TABLE_ENTITY Dashboard
+  TABLE_ENTITY Metrica
+}
+
+' Relaciones principales entre módulos
+Usuario ||--o{ Factura : "realiza"
+Usuario ||--o{ CierreDiario : "realiza"
+Usuario ||--o{ Empleado : "tiene"
+Cliente ||--o{ Factura : "tiene"
+Producto ||--o{ DetalleFactura : "incluye"
+Prospecto ||--o{ Oportunidad : "genera"
+Empleado ||--o{ Asistencia : "registra"
+
+@enduml

@@ -1,0 +1,62 @@
+@startuml Modulo_Facturacion
+
+!define TABLE_ENTITY class
+hide methods
+hide stereotypes
+
+package "Módulo Facturación" {
+  TABLE_ENTITY Factura {
+    {field} id: UUID
+    {field} numero_factura: STRING
+    {field} cliente_id: UUID
+    {field} usuario_id: UUID
+    {field} fecha_emision: DATE
+    {field} subtotal: DECIMAL
+    {field} impuesto: DECIMAL
+    {field} total: DECIMAL
+    {field} estado: ENUM(pendiente,pagada,anulada)
+    {field} metodo_pago: ENUM(efectivo,tarjeta,transferencia)
+    {field} created_at: TIMESTAMP
+  }
+
+  TABLE_ENTITY DetalleFactura {
+    {field} id: UUID
+    {field} factura_id: UUID
+    {field} producto_id: UUID
+    {field} cantidad: INTEGER
+    {field} precio_unitario: DECIMAL
+    {field} subtotal: DECIMAL
+    {field} created_at: TIMESTAMP
+  }
+
+  TABLE_ENTITY Cliente {
+    {field} id: UUID
+    {field} tipo_documento: ENUM(dni,ruc,pasaporte)
+    {field} numero_documento: STRING
+    {field} nombre: STRING
+    {field} email: STRING
+    {field} telefono: STRING
+    {field} direccion: STRING
+    {field} tipo_cliente: ENUM(natural,juridico)
+    {field} estado: ENUM(activo,inactivo)
+    {field} created_at: TIMESTAMP
+  }
+
+  TABLE_ENTITY SecuenciaFactura {
+    {field} id: UUID
+    {field} establecimiento: STRING
+    {field} punto_emision: STRING
+    {field} secuencia_actual: INTEGER
+    {field} estado: ENUM(activo,inactivo)
+    {field} created_at: TIMESTAMP
+  }
+}
+
+' Relaciones
+Factura }|--|| Cliente : cliente_id
+Factura }|--|| Usuario : usuario_id
+Factura ||--o{ DetalleFactura : factura_id
+DetalleFactura }|--|| Producto : producto_id
+Factura }|--|| SecuenciaFactura : secuencia_id
+
+@enduml

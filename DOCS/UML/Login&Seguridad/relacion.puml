@@ -1,0 +1,61 @@
+@startuml Modulo_Login_Seguridad
+
+!define TABLE_ENTITY class
+hide methods
+hide stereotypes
+
+package "Módulo Login y Seguridad" {
+  TABLE_ENTITY Usuario {
+    {field} id: UUID
+    {field} username: STRING
+    {field} email: STRING
+    {field} password: STRING
+    {field} nombre: STRING
+    {field} apellido: STRING
+    {field} rol_id: UUID
+    {field} estado: ENUM(activo,inactivo)
+    {field} ultimo_acceso: TIMESTAMP
+    {field} created_at: TIMESTAMP
+    {field} updated_at: TIMESTAMP
+  }
+
+  TABLE_ENTITY Rol {
+    {field} id: UUID
+    {field} nombre: STRING
+    {field} descripcion: TEXT
+    {field} estado: ENUM(activo,inactivo)
+    {field} created_at: TIMESTAMP
+    {field} updated_at: TIMESTAMP
+  }
+
+  TABLE_ENTITY Permiso {
+    {field} id: UUID
+    {field} modulo: STRING
+    {field} accion: STRING
+    {field} descripcion: TEXT
+    {field} created_at: TIMESTAMP
+  }
+
+  TABLE_ENTITY RolPermiso {
+    {field} id: UUID
+    {field} rol_id: UUID
+    {field} permiso_id: UUID
+    {field} created_at: TIMESTAMP
+  }
+
+  TABLE_ENTITY Sesion {
+    {field} id: UUID
+    {field} usuario_id: UUID
+    {field} token: TEXT
+    {field} expiracion: TIMESTAMP
+    {field} created_at: TIMESTAMP
+  }
+}
+
+' Relaciones
+Usuario ||--|| Rol : rol_id
+Rol ||--o{ RolPermiso : rol_id
+Permiso ||--o{ RolPermiso : permiso_id
+Usuario ||--o{ Sesion : usuario_id
+
+@enduml
