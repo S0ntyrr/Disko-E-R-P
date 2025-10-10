@@ -1,0 +1,8 @@
+@model Producto
+<h2>Detalle Producto</h2>
+<p><strong>Nombre:</strong> @Model.Nombre</p>
+<p><strong>Descripción:</strong> @Model.Descripcion</p>
+<p><strong>Stock:</strong> @Model.Stock</p>
+<p><strong>Precio:</strong> @Model.Precio</p>
+<p><strong>Activo:</strong> @Model.Activo</p>
+<a href="@Url.Action("Edit", new { id = Model.ProductoId })">Editar</a>

@@ -195,4 +195,29 @@ namespace DiskoERP.Web.Controllers
             return Content($"Usuarios encontrados: {usuarios.Count}");
         }
     }
+
+    public class Producto
+    {
+        public int ProductoId { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public int Stock { get; set; }
+        public decimal Precio { get; set; }
+    }
+
+    public class Cliente
+    {
+        public int ClienteId { get; set; }
+        public string Nombre { get; set; }
+        public string Email { get; set; }
+        public string Telefono { get; set; }
+    }
+
+    public class Proveedor
+    {
+        public int ProveedorId { get; set; }
+        public string Nombre { get; set; }
+        public string Email { get; set; }
+        public string Telefono { get; set; }
+    }
 }

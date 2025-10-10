@@ -1,0 +1,32 @@
+@model IEnumerable<Proveedor>
+<h2>Proveedores</h2>
+<a href="@Url.Action("Create")">Crear nuevo</a>
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th>Activo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Email</td>
+                <td>@item.Telefono</td>
+                <td>@item.Direccion</td>
+                <td>@item.Activo</td>
+                <td>
+                    <a href="@Url.Action("Details", new { id = item.ProveedorId })">Ver</a> |
+                    <a href="@Url.Action("Edit", new { id = item.ProveedorId })">Editar</a> |
+                    <a href="@Url.Action("Delete", new { id = item.ProveedorId })">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

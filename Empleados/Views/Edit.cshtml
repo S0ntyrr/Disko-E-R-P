@@ -1,0 +1,16 @@
+@model Empleados.Models.Empleado
+<h2>Editar Empleado</h2>
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="EmpleadoId" />
+    <label>Nombre Completo:</label>
+    <input asp-for="NombreCompleto" /><br />
+    <label>Email:</label>
+    <input asp-for="Email" /><br />
+    <label>Cargo:</label>
+    <input asp-for="Cargo" /><br />
+    <label>Fecha Ingreso:</label>
+    <input asp-for="FechaIngreso" type="date" /><br />
+    <label>Activo:</label>
+    <input asp-for="Activo" type="checkbox" /><br />
+    <button type="submit">Guardar</button>
+</form>

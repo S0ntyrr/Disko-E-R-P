@@ -1,0 +1,8 @@
+@model Empleados.Models.Empleado
+<h2>¿Eliminar Empleado?</h2>
+<p>¿Está seguro que desea eliminar a <strong>@Model.NombreCompleto</strong>?</p>
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="EmpleadoId" />
+    <button type="submit">Eliminar</button>
+    <a href="@Url.Action("Index")">Cancelar</a>
+</form>

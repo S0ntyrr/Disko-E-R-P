@@ -1,0 +1,8 @@
+@model Cliente
+<h2>Detalle Cliente</h2>
+<p><strong>Nombre:</strong> @Model.NombreCompleto</p>
+<p><strong>Email:</strong> @Model.Email</p>
+<p><strong>Teléfono:</strong> @Model.Telefono</p>
+<p><strong>Dirección:</strong> @Model.Direccion</p>
+<p><strong>Activo:</strong> @Model.Activo</p>
+<a href="@Url.Action("Edit", new { id = Model.ClienteId })">Editar</a>

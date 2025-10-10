@@ -142,3 +142,4 @@ C:\Users\santy\Desktop\CC\Disko-E-R-P\LOGIN\USUARIO\SEGURIDAD\obj\Debug\net8.0\r
 C:\Users\santy\Desktop\CC\Disko-E-R-P\LOGIN\USUARIO\SEGURIDAD\obj\Debug\net8.0\DiskoERP.pdb
 C:\Users\santy\Desktop\CC\Disko-E-R-P\LOGIN\USUARIO\SEGURIDAD\obj\Debug\net8.0\DiskoERP.genruntimeconfig.cache
 C:\Users\santy\Desktop\CC\Disko-E-R-P\LOGIN\USUARIO\SEGURIDAD\obj\Debug\net8.0\ref\DiskoERP.dll
+C:\Users\santy\desktop\cc\disko-e-r-p\login\usuario\seguridad\obj\Debug\net8.0\DiskoERP.MvcApplicationPartsAssemblyInfo.cs

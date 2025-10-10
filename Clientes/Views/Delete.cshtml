@@ -1,0 +1,8 @@
+@model Cliente
+<h2>¿Eliminar Cliente?</h2>
+<p>¿Está seguro que desea eliminar a <strong>@Model.NombreCompleto</strong>?</p>
+<form asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="ClienteId" />
+    <button type="submit">Eliminar</button>
+    <a href="@Url.Action("Index")">Cancelar</a>
+</form>

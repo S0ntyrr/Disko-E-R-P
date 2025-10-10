@@ -1,0 +1,8 @@
+@model Empleados.Models.Empleado
+<h2>Detalle Empleado</h2>
+<p><strong>Nombre:</strong> @Model.NombreCompleto</p>
+<p><strong>Email:</strong> @Model.Email</p>
+<p><strong>Cargo:</strong> @Model.Cargo</p>
+<p><strong>Fecha Ingreso:</strong> @Model.FechaIngreso.ToShortDateString()</p>
+<p><strong>Activo:</strong> @Model.Activo</p>
+<a href="@Url.Action("Edit", new { id = Model.EmpleadoId })">Editar</a>

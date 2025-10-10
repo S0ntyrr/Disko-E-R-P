@@ -1,0 +1,30 @@
+@model Empleados.Models.Empleado
+<h2>Empleados</h2>
+<a href="@Url.Action("Create")">Crear nuevo</a>
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Cargo</th>
+            <th>Activo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NombreCompleto</td>
+                <td>@item.Email</td>
+                <td>@item.Cargo</td>
+                <td>@item.Activo</td>
+                <td>
+                    <a href="@Url.Action("Details", new { id = item.EmpleadoId })">Ver</a> |
+                    <a href="@Url.Action("Edit", new { id = item.EmpleadoId })">Editar</a> |
+                    <a href="@Url.Action("Delete", new { id = item.EmpleadoId })">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

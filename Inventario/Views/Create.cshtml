@@ -1,0 +1,15 @@
+@model Producto
+<h2>Crear Producto</h2>
+<form asp-action="Create" method="post">
+    <label>Nombre:</label>
+    <input asp-for="Nombre" /><br />
+    <label>Descripción:</label>
+    <input asp-for="Descripcion" /><br />
+    <label>Stock:</label>
+    <input asp-for="Stock" type="number" /><br />
+    <label>Precio:</label>
+    <input asp-for="Precio" type="number" step="0.01" /><br />
+    <label>Activo:</label>
+    <input asp-for="Activo" type="checkbox" /><br />
+    <button type="submit">Guardar</button>
+</form>

@@ -1,0 +1,32 @@
+@model IEnumerable<Producto>
+<h2>Inventario de Productos</h2>
+<a href="@Url.Action("Create")">Crear nuevo</a>
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Stock</th>
+            <th>Precio</th>
+            <th>Activo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nombre</td>
+                <td>@item.Descripcion</td>
+                <td>@item.Stock</td>
+                <td>@item.Precio</td>
+                <td>@item.Activo</td>
+                <td>
+                    <a href="@Url.Action("Details", new { id = item.ProductoId })">Ver</a> |
+                    <a href="@Url.Action("Edit", new { id = item.ProductoId })">Editar</a> |
+                    <a href="@Url.Action("Delete", new { id = item.ProductoId })">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

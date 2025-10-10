@@ -1,0 +1,16 @@
+@model Cliente
+<h2>Editar Cliente</h2>
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="ClienteId" />
+    <label>Nombre Completo:</label>
+    <input asp-for="NombreCompleto" /><br />
+    <label>Email:</label>
+    <input asp-for="Email" /><br />
+    <label>Teléfono:</label>
+    <input asp-for="Telefono" /><br />
+    <label>Dirección:</label>
+    <input asp-for="Direccion" /><br />
+    <label>Activo:</label>
+    <input asp-for="Activo" type="checkbox" /><br />
+    <button type="submit">Guardar</button>
+</form>

@@ -58,4 +58,22 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Auth}/{action=Login}/{id?}");
 
+app.MapControllerRoute(
+    name: "proveedores",
+    pattern: "Proveedores/{action=Index}/{id?}",
+    defaults: new { controller = "Proveedor", action = "Index" }
+);
+
+app.MapControllerRoute(
+    name: "inventario",
+    pattern: "Inventario/{action=Index}/{id?}",
+    defaults: new { controller = "Producto", action = "Index" }
+);
+
+app.MapControllerRoute(
+    name: "clientes",
+    pattern: "Clientes/{action=Index}/{id?}",
+    defaults: new { controller = "Cliente", action = "Index" }
+);
+
 app.Run();

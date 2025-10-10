@@ -14,4 +14,27 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.2.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="..\..\..\Proveedores\Models\*.cs" />
+    <Compile Include="..\..\..\Proveedores\Controllers\*.cs" />
+    <Compile Include="..\..\..\Inventario\Models\*.cs" />
+    <Compile Include="..\..\..\Inventario\Controllers\*.cs" />
+    <Compile Include="..\..\..\Clientes\Models\*.cs" />
+    <Compile Include="..\..\..\Clientes\Controllers\*.cs" />
+    <Compile Include="..\..\..\Empleados\Models\*.cs" />
+    <Compile Include="..\..\..\Empleados\Controllers\*.cs" />
+    <Compile Include="..\..\..\Empleados\Services\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\..\Proveedores\Views\*.cshtml" />
+    <Content Include="..\..\..\Inventario\Views\*.cshtml" />
+    <Content Include="..\..\..\Clientes\Views\*.cshtml" />
+    <Content Include="..\..\..\Empleados\Views\*.cshtml" />
+  </ItemGroup>
+
 </Project>
