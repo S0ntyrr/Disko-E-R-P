@@ -1,276 +1,175 @@
-Disko E.R.P - Sistema de Gestión Empresarial
-https://img.shields.io/badge/Version-1.0.0-blue.svg
-https://img.shields.io/badge/Java-17-orange.svg
-https://img.shields.io/badge/Spring%2520Boot-3.0-green.svg
-https://img.shields.io/badge/MySQL-8.0-blue.svg
-
-📋 Tabla de Contenidos
-Descripción
-
-Características Principales
-
-Requisitos del Sistema
-
-Instalación y Configuración
-
-Configuración de la Base de Datos
-
-Sistema de Login
-
-Estructura del Proyecto
-
-Uso de la Aplicación
-
-Despliegue
-
-Solución de Problemas
-
-🚀 Descripción
-Disko E.R.P es un sistema de planificación de recursos empresariales desarrollado en Java con Spring Boot que permite gestionar múltiples aspectos de una empresa de manera integrada.
-
-✨ Características Principales
-🔐 Sistema de Autenticación Segura
-
-👥 Gestión de Usuarios y Roles
-
-📦 Gestión de Inventario
-
-💰 Módulo de Ventas y Facturación
-
-📊 Reportes y Dashboard
-
-🏢 Gestión de Clientes y Proveedores
-
-🔒 Control de Acceso por Roles
-
-🛠 Requisitos del Sistema
-Software Requerido
-Java JDK 17 o superior
-
-MySQL 8.0 o superior
-
-Maven 3.6 o superior
-
-Git para clonar el repositorio
-
-Dependencias Principales
-Spring Boot 3.0+
-
-Spring Security
-
-Spring Data JPA
-
-MySQL Connector
-
-JWT para autenticación
-
-Thymeleaf (opcional para vistas web)
-
-📥 Instalación y Configuración
-1. Clonar el Repositorio
-bash
-git clone https://github.com/S0ntyrr/Disko-E-R-P.git
-cd Disko-E-R-P
-2. Configurar el Entorno
-Asegúrate de tener Java 17 instalado:
-
-bash
-java -version
-3. Compilar el Proyecto
-bash
-mvn clean install
-4. Ejecutar la Aplicación
-bash
-mvn spring-boot:run
-O compilar el JAR y ejecutar:
-
-bash
-mvn clean package
-java -jar target/disko-erp-1.0.0.jar
-🗄 Configuración de la Base de Datos
-1. Crear Base de Datos MySQL
-sql
-CREATE DATABASE disko_erp;
-CREATE USER 'disko_user'@'localhost' IDENTIFIED BY 'tu_password_seguro';
-GRANT ALL PRIVILEGES ON disko_erp.* TO 'disko_user'@'localhost';
-FLUSH PRIVILEGES;
-2. Configurar Application Properties
-Crea el archivo src/main/resources/application.properties:
-
-properties
-# Configuración de Base de Datos
-spring.datasource.url=jdbc:mysql://localhost:3306/disko_erp
-spring.datasource.username=disko_user
-spring.datasource.password=tu_password_seguro
-
-# Configuración JPA/Hibernate
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
-
-# Configuración del Servidor
-server.port=8080
-spring.application.name=Disko-ERP
-
-# Configuración de Seguridad
-jwt.secret=tu_jwt_secret_muy_seguro_y_largo
-jwt.expiration=86400000
-
-# Configuración de Logging
-logging.level.com.disko.erp=DEBUG
-3. Ejecutar Migraciones (si aplica)
-La aplicación creará automáticamente las tablas necesarias al iniciar con ddl-auto=update.
-
-🔐 Sistema de Login
-Características de Seguridad
-Autenticación JWT (JSON Web Tokens)
-
-Encriptación de contraseñas con BCrypt
-
-Control de sesiones
-
-Protección contra CSRF
-
-Configuración de CORS
-
-Usuarios por Defecto
-Al iniciar por primera vez, se crean usuarios predeterminados:
-
-Administrador:
-
-Usuario: admin
-
-Contraseña: admin123
-
-Rol: ADMIN
-
-Usuario Regular:
-
-Usuario: usuario
-
-Contraseña: user123
-
-Rol: USER
-
-Endpoints de Autenticación
-http
-POST /api/auth/login
-Content-Type: application/json
-
-{
-  "username": "tu_usuario",
-  "password": "tu_contraseña"
-}
-Respuesta:
-
-json
-{
-  "token": "jwt_token",
-  "username": "tu_usuario",
-  "roles": ["ROLE_USER"],
-  "expiresIn": 86400000
-}
-Configuración de Roles
-ROLE_ADMIN: Acceso completo al sistema
-
-ROLE_USER: Acceso limitado a módulos básicos
-
-ROLE_MANAGER: Acceso a gestión y reportes
-🖥 Uso de la Aplicación
-1. Acceder al Sistema
-Abre tu navegador y ve a: http://localhost:8080
-
-Ingresa tus credenciales en el formulario de login
-
-2. Navegación Principal
-Dashboard: Vista general del sistema
-
-Usuarios: Gestión de usuarios y permisos
-
-Inventario: Control de productos y stock
-
-Ventas: Procesos de venta y facturación
-
-Reportes: Generación de reportes y estadísticas
-
-3. Funciones por Módulo
-Módulo de Usuarios
-Crear, editar y eliminar usuarios
-
-Asignar roles y permisos
-
-Gestionar perfiles de usuario
-
-Módulo de Inventario
-Gestionar categorías de productos
-
-Control de stock y alertas
-
-Movimientos de inventario
+<p align="center">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=250&section=header&text=Disko%20E-R-P&fontSize=80&fontAlign=50&fontAlignY=30&animation=twinkling" />
+</p>
+
+<p align="center">
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Orbitron&size=30&pause=1000&color=5865F2¢er=true&width=500&lines=Sistema+ERP+Moderno;Gestión+Integral+de+Negocios;Plataforma+de+Automatización" alt="Typing SVG" /></a>
+</p>
+
+<p align="center">
+<img src="https://img.shields.io/badge/versión-1.0.0-blue" />
+<img src="https://img.shields.io/badge/licencia-MIT-green" />
+<img src="https://img.shields.io/badge/estado-desarrollo-active-success" />
+<img src="https://img.shields.io/badge/plataforma-web-important" />
+<img src="https://img.shields.io/badge/arquitectura-moderna-informational" />
+</p>
+
+<p align="center">
+<img width="430" src="https://github-readme-stats.vercel.app/api?username=S0ntyrr&theme=dark&show_icons=true&hide_title=true&hide_border=true" />
+<img width="400" src="https://streak-stats.demolab.com?user=S0ntyrr&theme=dark&hide_border=true" />
+</p>
+
+<p align="center">
+<img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=S0ntyrr&theme=dark&hide_border=true&layout=compact&langs_count=6&hide=html,css" />
+</p>
+
+<p align="center">
+<img width="800" src="https://github-readme-activity-graph.vercel.app/graph?username=S0ntyrr&theme=github-dark&hide_border=true&area=true" />
+</p>
+
+## 📊 Descripción del Proyecto
+
+**Disko E-R-P** es un sistema ERP (Enterprise Resource Planning) moderno diseñado para ofrecer una solución integral de gestión empresarial. Desarrollado con tecnologías web actuales, proporciona una plataforma escalable y eficiente para la administración de todos los aspectos de un negocio.
+
+### 🎯 Características Principales
+
+| Módulo | Funcionalidades |
+|--------|----------------|
+| **📦 Gestión de Inventarios** | Control de stock, alertas, categorización |
+| **💰 Ventas y Facturación** | POS, facturas electrónicas, reportes |
+| **👥 Gestión de Clientes** | CRM, historial, segmentación |
+| **📊 Contabilidad** | Estados financieros, balances, impuestos |
+| **🧑‍💼 Recursos Humanos** | Nóminas, asistencia, perfiles |
+| **📈 Analytics** | Dashboards, KPIs, business intelligence |
+
+## 🛠️ Tecnologías Utilizadas
+
+<p align="center">
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" />
+<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" />
+<img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" />
+<img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" />
+<img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" />
+<img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
+</p>
+
+## 🚀 Instalación y Configuración
+
+### Prerrequisitos
+
+- Node.js (v16 o superior)
+- PostgreSQL (v12 o superior)
+- npm o yarn
+
+### 🔧 Instalación Paso a Paso
+
+1. **Clonar el repositorio**
+   ```bash
+   git clone https://github.com/S0ntyrr/Disko-E-R-P.git
+   cd Disko-E-R-P
+
+2. **Instalar dependencias**
+   cd backend
+npm install
+
+3. Instalar dependencias del frontend
+cd ../frontend
+npm install
+
+4. Configurar variables de entorno
+# Crear archivo .env en backend/
+DATABASE_URL=postgresql://usuario:password@localhost:5432/disko_erp
+JWT_SECRET=tu_clave_secreta
+PORT=3001
+
+5. Configurar la base de datos
+cd backend
+npx sequelize db:create
+npx sequelize db:migrate
+npx sequelize db:seed:all
+
+6. Iniciar el servidor backend
+# Terminal 1 - Backend
+cd backend
+npm run dev
+
+# Terminal 2 - Frontend
+cd frontend
+npm start
+
+📁 Estructura del Proyecto
+Disko-E-R-P/
+├── 📁 backend/
+│   ├── 📁 controllers/     # Lógica de negocio
+│   ├── 📁 models/          # Modelos de datos
+│   ├── 📁 routes/          # Rutas de la API
+│   ├── 📁 middleware/      # Autenticación y validaciones
+│   └── 📁 config/          # Configuración de BD
+├── 📁 frontend/
+│   ├── 📁 src/
+│   │   ├── 📁 components/  # Componentes React
+│   │   ├── 📁 pages/       # Vistas principales
+│   │   ├── 📁 hooks/       # Custom hooks
+│   │   └── 📁 utils/       # Utilidades
+├── 📁 docs/               # Documentación
+├── 📁 docker/             # Configuración Docker
+└── 📄 docker-compose.yml  # Orquestación de contenedores
+
+🎮 Uso del Sistema
+Módulos Disponibles
+Dashboard Principal
+
+Vista general del negocio
+
+Métricas clave en tiempo real
+
+Gráficos interactivos
+
+2. Gestión de Inventarios
+// Ejemplo: Agregar producto
+const nuevoProducto = {
+  nombre: "Laptop Gaming",
+  categoria: "Tecnología",
+  precio: 1200,
+  stock: 15,
+  sku: "LT-GAM-001"
+};
 
 Módulo de Ventas
-Procesar órdenes de venta
 
-Generar facturas
+Punto de Venta (POS) integrado
 
-Gestión de clientes
+Facturación electrónica
 
-🚀 Despliegue
-Despliegue en Producción
-Configuración de Producción:
+Control de comisiones
 
-properties
-spring.profiles.active=prod
-spring.jpa.hibernate.ddl-auto=validate
-Variables de Entorno:
+Reportes y Analytics
 
-bash
-export DATABASE_URL=tu_url_de_produccion
-export DATABASE_USERNAME=tu_usuario
-export DATABASE_PASSWORD=tu_password
-export JWT_SECRET=tu_jwt_secret_seguro
-Ejecutar en Producción:
+Reportes personalizados
 
-bash
-java -jar -Dspring.profiles.active=prod disko-erp-1.0.0.jar
-Docker (Opcional)
-dockerfile
-FROM openjdk:17-jdk-slim
-COPY target/disko-erp-1.0.0.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","/app.jar"]
+Exportación a PDF/Excel
+
+Dashboards ejecutivos
+
 🐛 Solución de Problemas
 Problemas Comunes
-Error de Conexión a BD:
+Error de conexión a la base de datos
+# Verificar que PostgreSQL esté ejecutándose
+sudo systemctl status postgresql
 
-Verifica que MySQL esté ejecutándose
+Puerto ya en uso
 
-Confirma credenciales en application.properties
+# Cambiar puerto en variables de entorno
+PORT=3002
+Error de dependencias
 
-Asegura que la base de datos exista
+# Limpiar cache y reinstalar
+rm -rf node_modules package-lock.json
+npm install
 
-Puerto en Uso:
-
-bash
-# Verificar procesos en puerto 8080
-netstat -ano | findstr :8080
-# Cambiar puerto en application.properties
-server.port=8081
-Problemas de Autenticación:
-
-Verificar que los usuarios estén creados
-
-Revisar configuración de JWT
-
-Verificar encriptación de contraseñas
-
-Logs y Debugging
-Habilita logs detallados en application.properties:
-
-properties
-logging.level.org.springframework.security=DEBUG
-logging.level.com.disko.erp=DEBUG
 🤝 Contribución
+¡Contribuciones son bienvenidas! Por favor sigue estos pasos:
+
 Fork el proyecto
 
 Crea una rama para tu feature (git checkout -b feature/AmazingFeature)
@@ -279,5 +178,27 @@ Commit tus cambios (git commit -m 'Add some AmazingFeature')
 
 Push a la rama (git push origin feature/AmazingFeature)
 
-
 Abre un Pull Request
+
+Guía de Estilo
+Sigue las convenciones de código existentes
+
+Incluye tests para nuevas funcionalidades
+
+Actualiza la documentación correspondiente
+
+📋 Roadmap
+Fase 1: Módulos básicos (Inventario, Ventas)
+
+Fase 2: Módulos avanzados (CRM, Contabilidad)
+
+Fase 3: Integraciones externas (APIs, e-commerce)
+
+Fase 4: Mobile App y optimizaciones
+
+👨‍💻 Autor
+Nombre: S0ntyrr
+
+GitHub: @S0ntyrr @function14
+
+Proyecto: Disko E-R-P
