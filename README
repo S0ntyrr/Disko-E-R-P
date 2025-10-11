@@ -97,24 +97,6 @@ npm run dev
 cd frontend
 npm start
 
-📁 Estructura del Proyecto
-Disko-E-R-P/
-├── 📁 backend/
-│   ├── 📁 controllers/     # Lógica de negocio
-│   ├── 📁 models/          # Modelos de datos
-│   ├── 📁 routes/          # Rutas de la API
-│   ├── 📁 middleware/      # Autenticación y validaciones
-│   └── 📁 config/          # Configuración de BD
-├── 📁 frontend/
-│   ├── 📁 src/
-│   │   ├── 📁 components/  # Componentes React
-│   │   ├── 📁 pages/       # Vistas principales
-│   │   ├── 📁 hooks/       # Custom hooks
-│   │   └── 📁 utils/       # Utilidades
-├── 📁 docs/               # Documentación
-├── 📁 docker/             # Configuración Docker
-└── 📄 docker-compose.yml  # Orquestación de contenedores
-
 🎮 Uso del Sistema
 Módulos Disponibles
 Dashboard Principal
