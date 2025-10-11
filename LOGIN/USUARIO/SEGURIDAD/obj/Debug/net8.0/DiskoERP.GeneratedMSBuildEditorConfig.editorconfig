@@ -44,90 +44,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/santy/Desktop/CC/Disko-E-R-P/LOGIN/USUARIO/SEGURIDAD/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/santy/Desktop/CC/Disko-E-R-P/LOGIN/USUARIO/SEGURIDAD/Views/Shared/_LoginLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpbkxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/santy/Desktop/CC/Disko-E-R-P/LOGIN/USUARIO/SEGURIDAD/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/santy/Desktop/CC/Disko-E-R-P/LOGIN/USUARIO/SEGURIDAD/VISTA/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = VklTVEFcTG9naW4uY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Proveedores/Views/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Q3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Proveedores/Views/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = RGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Proveedores/Views/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = RGV0YWlscy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Proveedores/Views/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = RWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Proveedores/Views/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = SW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Inventario/Views/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Q3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Inventario/Views/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = RGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Inventario/Views/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = RGV0YWlscy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Inventario/Views/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = RWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Inventario/Views/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = SW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Clientes/Views/create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Y3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Clientes/Views/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = RGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Clientes/Views/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = RGV0YWlscy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Clientes/Views/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = RWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Clientes/Views/index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = aW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Empleados/Views/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Q3JlYXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Empleados/Views/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = RGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Empleados/Views/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = RGV0YWlscy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Empleados/Views/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = RWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/santy/Desktop/CC/Disko-E-R-P/Empleados/Views/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = SW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

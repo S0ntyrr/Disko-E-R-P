@@ -6,15 +6,23 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <!-- 🔹 Dependencias principales -->
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.11" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.11" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.11">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Validation" Version="4.0.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.2.1" />
   </ItemGroup>
 
+  <!-- 🔹 Compilar archivos C# de otros módulos -->
   <ItemGroup>
     <Compile Include="..\..\..\Proveedores\Models\*.cs" />
     <Compile Include="..\..\..\Proveedores\Controllers\*.cs" />
@@ -27,15 +35,7 @@
     <Compile Include="..\..\..\Empleados\Services\*.cs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="..\..\..\Proveedores\Views\*.cshtml" />
-    <Content Include="..\..\..\Inventario\Views\*.cshtml" />
-    <Content Include="..\..\..\Clientes\Views\*.cshtml" />
-    <Content Include="..\..\..\Empleados\Views\*.cshtml" />
-  </ItemGroup>
+  <!-- ❌ Eliminado el bloque de Content duplicado para Views y wwwroot -->
+  <!-- El SDK de .NET los incluye automáticamente -->
 
 </Project>

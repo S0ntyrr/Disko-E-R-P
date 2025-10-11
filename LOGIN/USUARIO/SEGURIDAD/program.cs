@@ -6,7 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuración básica
+// --------------------------
+// CONFIGURACIÓN DE SERVICIOS
+// --------------------------
 builder.Services.AddControllersWithViews();
 
 // Autenticación con cookies
@@ -15,15 +17,17 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.LoginPath = "/Auth/Login";
         options.LogoutPath = "/Auth/Logout";
-        options.AccessDeniedPath = "/Auth/Login";
+        options.AccessDeniedPath = "/Auth/AccesoDenegado";
         options.ExpireTimeSpan = TimeSpan.FromHours(8);
         options.SlidingExpiration = true;
         options.Cookie.HttpOnly = true;
-        options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+        options.Cookie.SecurePolicy = builder.Environment.IsDevelopment()
+            ? CookieSecurePolicy.SameAsRequest
+            : CookieSecurePolicy.Always;
         options.Cookie.SameSite = SameSiteMode.Lax;
     });
 
-// Registrar servicios
+// Servicios personalizados
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 // Sesión
@@ -33,21 +37,25 @@ builder.Services.AddSession(options =>
     options.IdleTimeout = TimeSpan.FromHours(2);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
-    options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+    options.Cookie.SecurePolicy = builder.Environment.IsDevelopment()
+        ? CookieSecurePolicy.SameAsRequest
+        : CookieSecurePolicy.Always;
 });
 
-// Conexión a base de datos
+// Base de datos
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
-// Aplicar cultura regional (opcional)
+// Cultura regional (Colombia)
 var cultureInfo = new System.Globalization.CultureInfo("es-CO");
 System.Globalization.CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
 System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
-// Pipeline de la aplicación
+// --------------------------
+// PIPELINE DE MIDDLEWARES
+// --------------------------
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -56,43 +64,48 @@ else
 {
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
+    app.UseHttpsRedirection();
 }
 
-// Archivos estáticos, rutas y middlewares
 app.UseStaticFiles();
 app.UseRouting();
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Aplicar migraciones automáticas (EF Core)
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.Migrate();
-}
-
-// Rutas
+// --------------------------
+// RUTAS PRINCIPALES
+// --------------------------
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Auth}/{action=Login}/{id?}");
 
+// Ruta directa al dashboard
+app.MapControllerRoute(
+    name: "dashboard",
+    pattern: "Dashboard/{action=Index}/{id?}",
+    defaults: new { controller = "Dashboard", action = "Index" });
+
+// Módulos del ERP
 app.MapControllerRoute(
     name: "proveedores",
     pattern: "Proveedores/{action=Index}/{id?}",
-    defaults: new { controller = "Proveedor", action = "Index" }
-);
+    defaults: new { controller = "Proveedor", action = "Index" });
 
 app.MapControllerRoute(
     name: "inventario",
     pattern: "Inventario/{action=Index}/{id?}",
-    defaults: new { controller = "Producto", action = "Index" }
-);
+    defaults: new { controller = "Producto", action = "Index" });
 
 app.MapControllerRoute(
     name: "clientes",
     pattern: "Clientes/{action=Index}/{id?}",
-    defaults: new { controller = "Cliente", action = "Index" }
-);
+    defaults: new { controller = "Cliente", action = "Index" });
+
+// Módulo de administración de usuarios
+app.MapControllerRoute(
+    name: "admin",
+    pattern: "Admin/{action=Index}/{id?}",
+    defaults: new { controller = "Admin", action = "Index" });
 
 app.Run();

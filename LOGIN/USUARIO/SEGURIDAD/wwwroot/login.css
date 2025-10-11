@@ -1,0 +1,44 @@
+/* Efecto glassmorphism mejorado */
+.login-box {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Fondo animado con movimiento */
+body.login-page {
+    background: linear-gradient(135deg, #5A3AED, #A855F7, #EC4899);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Animación en los íconos al cargar */
+.logo-container {
+    animation: bounceIn 1s ease;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    60% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+/* Hover del botón */
+.btn-primary:hover {
+    background: linear-gradient(135deg, #6D28D9, #7C3AED);
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.6);
+}
+
+/* Panel de información lateral más llamativo */
+.info-content {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
