@@ -1,4 +1,5 @@
 using DiskoERP.Core.DTOs;
+using LOGIN.USUARIO.SEGURIDAD.Models;
 
 namespace DiskoERP.Core.Services.Interfaces
 {
@@ -8,5 +9,9 @@ namespace DiskoERP.Core.Services.Interfaces
         Task<ResponseDto> CerrarSesion(string token);
         Task<ResponseDto> RecuperarPassword(RecuperarPasswordDto model, string ipAddress);
         Task<ResponseDto> RestablecerPassword(RestablecerPasswordDto model);
+
+        // Métodos adicionales implementados en AuthService
+        Task<bool> RegisterUserAsync(LoginDto model);
+        Task<Usuario?> ValidateUserAsync(LoginDto model);
     }
 }

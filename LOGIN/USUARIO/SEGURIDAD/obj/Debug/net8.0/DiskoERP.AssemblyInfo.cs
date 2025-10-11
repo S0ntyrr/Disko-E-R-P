@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DiskoERP")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+91d38801e1cf079edf4259ad690b86c1ef97f449")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8b3464705a5a6197864b008f13dfc02547afc072")]
 [assembly: System.Reflection.AssemblyProductAttribute("DiskoERP")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DiskoERP")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

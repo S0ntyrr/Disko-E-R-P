@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using DiskoERP.Core.Services.Interfaces;
 using DiskoERP.Core.Services.Implementations;
-using SEGURIDAD.Models;
+using LOGIN.USUARIO.SEGURIDAD.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Configuración básica
 builder.Services.AddControllersWithViews();
 
-// Autenticación simple con cookies
+// Autenticación con cookies
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
@@ -36,24 +36,43 @@ builder.Services.AddSession(options =>
     options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
 });
 
+// Conexión a base de datos
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
-// Pipeline básico
+// Aplicar cultura regional (opcional)
+var cultureInfo = new System.Globalization.CultureInfo("es-CO");
+System.Globalization.CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+// Pipeline de la aplicación
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
+else
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
 
+// Archivos estáticos, rutas y middlewares
 app.UseStaticFiles();
 app.UseRouting();
 app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Configurar rutas
+// Aplicar migraciones automáticas (EF Core)
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+}
+
+// Rutas
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Auth}/{action=Login}/{id?}");

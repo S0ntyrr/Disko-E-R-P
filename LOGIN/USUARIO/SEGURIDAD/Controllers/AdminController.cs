@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using SEGURIDAD.Models;
+using LOGIN.USUARIO.SEGURIDAD.Models;
+using BCrypt.Net;
 
 public class AdminController : Controller
 {

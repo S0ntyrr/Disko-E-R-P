@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using DiskoERP.Core.DTOs;
 using DiskoERP.Core.Services.Interfaces;
 using System.Security.Claims;
+using LOGIN.USUARIO.SEGURIDAD.Models;
 
 namespace DiskoERP.Web.Controllers
 {
@@ -10,9 +11,9 @@ namespace DiskoERP.Web.Controllers
     {
         private readonly IAuthService _authService;
         private readonly ILogger<AuthController> _logger;
-        private readonly ApplicationDbContext _context; // Agregado para el acceso a datos
+        private readonly AppDbContext _context; // Agregado para el acceso a datos
 
-        public AuthController(IAuthService authService, ILogger<AuthController> logger, ApplicationDbContext context)
+        public AuthController(IAuthService authService, ILogger<AuthController> logger, AppDbContext context)
         {
             _authService = authService;
             _logger = logger;

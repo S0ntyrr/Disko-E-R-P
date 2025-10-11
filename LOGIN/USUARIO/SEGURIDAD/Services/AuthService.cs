@@ -1,5 +1,7 @@
 using DiskoERP.Core.DTOs;
 using DiskoERP.Core.Services.Interfaces;
+using LOGIN.USUARIO.SEGURIDAD.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -11,9 +13,9 @@ namespace DiskoERP.Core.Services.Implementations
     {
         private readonly IConfiguration _configuration;
         private readonly ILogger<AuthService> _logger;
-        private readonly ApplicationDbContext _context; // Agregado para el acceso a datos
+        private readonly AppDbContext _context;
 
-        public AuthService(IConfiguration configuration, ILogger<AuthService> logger, ApplicationDbContext context)
+        public AuthService(IConfiguration configuration, ILogger<AuthService> logger, AppDbContext context)
         {
             _configuration = configuration;
             _logger = logger;
@@ -22,7 +24,7 @@ namespace DiskoERP.Core.Services.Implementations
 
         public async Task<LoginResultDto> IniciarSesion(LoginDto loginDto, string ipAddress, string userAgent)
         {
-            // Para la demostración, vamos a crear un usuario demo
+            // Usuario demo
             if (loginDto.Usuario == "admin" && loginDto.Password == "123456")
             {
                 var usuario = new UsuarioDto
@@ -50,8 +52,7 @@ namespace DiskoERP.Core.Services.Implementations
                 };
             }
 
-            await Task.Delay(100); // Simular validación async
-
+            await Task.Delay(100);
             return new LoginResultDto
             {
                 Exitoso = false,
@@ -61,19 +62,13 @@ namespace DiskoERP.Core.Services.Implementations
 
         public async Task<ResponseDto> CerrarSesion(string token)
         {
-            await Task.Delay(100); // Simular operación async
-            
-            return new ResponseDto
-            {
-                Exitoso = true,
-                Mensaje = "Sesión cerrada correctamente"
-            };
+            await Task.Delay(100);
+            return new ResponseDto { Exitoso = true, Mensaje = "Sesión cerrada correctamente" };
         }
 
         public async Task<ResponseDto> RecuperarPassword(RecuperarPasswordDto model, string ipAddress)
         {
-            await Task.Delay(100); // Simular envío de email
-
+            await Task.Delay(100);
             return new ResponseDto
             {
                 Exitoso = true,
@@ -83,8 +78,7 @@ namespace DiskoERP.Core.Services.Implementations
 
         public async Task<ResponseDto> RestablecerPassword(RestablecerPasswordDto model)
         {
-            await Task.Delay(100); // Simular operación async
-
+            await Task.Delay(100);
             return new ResponseDto
             {
                 Exitoso = true,
@@ -94,27 +88,36 @@ namespace DiskoERP.Core.Services.Implementations
 
         public async Task<bool> RegisterUserAsync(LoginDto model)
         {
-            if (model.Password != model.ConfirmPassword) return false;
+            if (string.IsNullOrWhiteSpace(model.Usuario) || string.IsNullOrWhiteSpace(model.Password))
+                return false;
+
+            var salt = Guid.NewGuid().ToString();
+            var hash = BCrypt.Net.BCrypt.HashPassword(model.Password + salt); // ✅ Uso correcto
+
             var usuario = new Usuario
             {
-                Nombre = model.Nombre,
-                Apellido = model.Apellido,
-                Correo = model.Correo,
-                Cargo = model.Cargo,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(model.Password),
-                Rol = "Usuario"
+                NombreCompleto = model.Usuario,
+                Email = model.Usuario + "@diskoerp.com",
+                NombreUsuario = model.Usuario,
+                PasswordSalt = salt,
+                PasswordHash = hash,
+                Estado = "Activo",
+                RolId = 2
             };
+
             _context.Usuarios.Add(usuario);
             await _context.SaveChangesAsync();
             return true;
         }
 
-        public async Task<Usuario> ValidateUserAsync(LoginDto model)
+        public async Task<Usuario?> ValidateUserAsync(LoginDto model)
         {
             var usuario = await _context.Usuarios
-                .FirstOrDefaultAsync(u => u.NombreUsuario == model.NombreUsuario && u.Estado == "Activo");
-            if (usuario != null && VerificarPassword(model.Password, usuario.PasswordHash, usuario.PasswordSalt))
+                .FirstOrDefaultAsync(u => u.NombreUsuario == model.Usuario && u.Estado == "Activo");
+
+            if (usuario != null && BCrypt.Net.BCrypt.Verify(model.Password + usuario.PasswordSalt, usuario.PasswordHash)) // ✅ Uso correcto
                 return usuario;
+
             return null;
         }
 
