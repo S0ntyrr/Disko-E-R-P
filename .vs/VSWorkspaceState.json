@@ -4,9 +4,10 @@
     "\\LOGIN",
     "\\LOGIN\\USUARIO",
     "\\LOGIN\\USUARIO\\SEGURIDAD",
+    "\\LOGIN\\USUARIO\\SEGURIDAD\\Controllers",
     "\\LOGIN\\USUARIO\\SEGURIDAD\\wwwroot",
     "\\LOGIN\\USUARIO\\SEGURIDAD\\wwwroot\\css"
   ],
-  "SelectedNode": "\\LOGIN\\USUARIO\\SEGURIDAD\\wwwroot\\css\\login.css",
+  "SelectedNode": "\\LOGIN\\USUARIO\\SEGURIDAD\\Controllers\\AdminController.cs",
   "PreviewInSolutionExplorer": false
 }

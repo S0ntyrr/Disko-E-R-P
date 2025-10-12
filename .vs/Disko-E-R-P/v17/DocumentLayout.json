@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\santy\\Desktop\\CC\\Disko-E-R-P\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\santy\\Desktop\\CC\\Disko-E-R-P\\LOGIN\\USUARIO\\SEGURIDAD\\Controllers\\AdminController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:LOGIN\\USUARIO\\SEGURIDAD\\Controllers\\AdminController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\santy\\Desktop\\CC\\Disko-E-R-P\\LOGIN\\USUARIO\\SEGURIDAD\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:LOGIN\\USUARIO\\SEGURIDAD\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\santy\\Desktop\\CC\\Disko-E-R-P\\LOGIN\\USUARIO\\SEGURIDAD\\wwwroot\\css\\login.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:LOGIN\\USUARIO\\SEGURIDAD\\wwwroot\\css\\login.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
@@ -14,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,13 +34,39 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "program.cs",
+              "DocumentMoniker": "C:\\Users\\santy\\Desktop\\CC\\Disko-E-R-P\\LOGIN\\USUARIO\\SEGURIDAD\\program.cs",
+              "RelativeDocumentMoniker": "LOGIN\\USUARIO\\SEGURIDAD\\program.cs",
+              "ToolTip": "C:\\Users\\santy\\Desktop\\CC\\Disko-E-R-P\\LOGIN\\USUARIO\\SEGURIDAD\\program.cs",
+              "RelativeToolTip": "LOGIN\\USUARIO\\SEGURIDAD\\program.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-12T17:06:12.966Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Users\\santy\\Desktop\\CC\\Disko-E-R-P\\LOGIN\\USUARIO\\SEGURIDAD\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "LOGIN\\USUARIO\\SEGURIDAD\\Controllers\\AdminController.cs",
+              "ToolTip": "C:\\Users\\santy\\Desktop\\CC\\Disko-E-R-P\\LOGIN\\USUARIO\\SEGURIDAD\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "LOGIN\\USUARIO\\SEGURIDAD\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-12T17:06:00.015Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "login.css",
               "DocumentMoniker": "C:\\Users\\santy\\Desktop\\CC\\Disko-E-R-P\\LOGIN\\USUARIO\\SEGURIDAD\\wwwroot\\css\\login.css",
               "RelativeDocumentMoniker": "LOGIN\\USUARIO\\SEGURIDAD\\wwwroot\\css\\login.css",
               "ToolTip": "C:\\Users\\santy\\Desktop\\CC\\Disko-E-R-P\\LOGIN\\USUARIO\\SEGURIDAD\\wwwroot\\css\\login.css",
               "RelativeToolTip": "LOGIN\\USUARIO\\SEGURIDAD\\wwwroot\\css\\login.css",
-              "ViewState": "AgIAAGMAAAAAAAAAAAAAAGYAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2025-10-02T18:24:31.188Z",
               "EditorCaption": ""
