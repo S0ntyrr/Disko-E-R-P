@@ -11,7 +11,7 @@ namespace DiskoERP.Core.Services.Interfaces
         Task<ResponseDto> RestablecerPassword(RestablecerPasswordDto model);
 
         // Métodos adicionales implementados en AuthService
-        Task<bool> RegisterUserAsync(LoginDto model);
+        Task<bool> RegisterUserAsync(LoginDto model, string email = "");
         Task<Usuario?> ValidateUserAsync(LoginDto model);
     }
 }

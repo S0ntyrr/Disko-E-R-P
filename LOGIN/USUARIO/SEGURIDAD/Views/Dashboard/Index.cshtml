@@ -1,13 +1,32 @@
 @{
     ViewData["Title"] = "Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var nombreUsuario = ViewData["NombreUsuario"]?.ToString() ?? User.Identity?.Name ?? "Usuario";
 }
 
 <div class="welcome-card">
-    <h2 class="text-primary mb-3"><i class="fas fa-star"></i> ¡Bienvenido al Dashboard de Disko ERP!</h2>
+    <h2 class="text-primary mb-3"><i class="fas fa-star"></i> ¡Bienvenido <span id="nombreUsuario">@nombreUsuario</span> al Dashboard de Disko ERP!</h2>
     <p class="lead">Desde aquí podrás administrar todos los aspectos de tu negocio.</p>
-    <div class="alert alert-success"><i class="fas fa-check-circle"></i> Sistema operativo</div>
+    <div class="alert alert-success"><i class="fas fa-check-circle"></i> Sistema operativo - Sesión activa</div>
 </div>
+
+<script>
+    // Actualizar nombre desde localStorage si existe
+    document.addEventListener('DOMContentLoaded', function() {
+        try {
+            const sesionLocal = localStorage.getItem('sesionActiva');
+            if (sesionLocal) {
+                const datos = JSON.parse(sesionLocal);
+                if (datos.usuario) {
+                    document.getElementById('nombreUsuario').textContent = datos.usuario;
+                    console.log('✅ Nombre actualizado desde localStorage:', datos.usuario);
+                }
+            }
+        } catch (e) {
+            console.log('ℹ️ No hay sesión en localStorage');
+        }
+    });
+</script>
 
 <div class="row">
     <div class="col-md-4 mb-4">
@@ -15,7 +34,9 @@
             <div class="feature-icon"><i class="fas fa-users"></i></div>
             <h4>Clientes</h4>
             <p>Gestión de clientes y fidelización.</p>
-            <a href="/Clientes" class="btn btn-outline-primary">Ver módulo</a>
+            <a href="/Cliente/Index" class="btn btn-outline-primary">
+                <i class="fas fa-arrow-right"></i> Ver módulo
+            </a>
         </div>
     </div>
     <div class="col-md-4 mb-4">
@@ -23,7 +44,9 @@
             <div class="feature-icon"><i class="fas fa-truck"></i></div>
             <h4>Proveedores</h4>
             <p>Control y contacto con tus proveedores.</p>
-            <a href="/Proveedores" class="btn btn-outline-primary">Ver módulo</a>
+            <a href="/Proveedor/Index" class="btn btn-outline-primary">
+                <i class="fas fa-arrow-right"></i> Ver módulo
+            </a>
         </div>
     </div>
     <div class="col-md-4 mb-4">
@@ -31,7 +54,9 @@
             <div class="feature-icon"><i class="fas fa-boxes"></i></div>
             <h4>Inventario</h4>
             <p>Supervisa existencias y reposiciones.</p>
-            <a href="/Inventario" class="btn btn-outline-primary">Ver módulo</a>
+            <a href="/Producto/Index" class="btn btn-outline-primary">
+                <i class="fas fa-arrow-right"></i> Ver módulo
+            </a>
         </div>
     </div>
 </div>

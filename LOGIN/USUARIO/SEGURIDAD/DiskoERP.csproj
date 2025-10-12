@@ -23,6 +23,8 @@
   </ItemGroup>
 
   <!-- 🔹 Compilar archivos C# de otros módulos -->
+  <!-- ❌ Comentado porque ahora los modelos y controladores están en el proyecto principal -->
+  <!--
   <ItemGroup>
     <Compile Include="..\..\..\Proveedores\Models\*.cs" />
     <Compile Include="..\..\..\Proveedores\Controllers\*.cs" />
@@ -34,6 +36,7 @@
     <Compile Include="..\..\..\Empleados\Controllers\*.cs" />
     <Compile Include="..\..\..\Empleados\Services\*.cs" />
   </ItemGroup>
+  -->
 
   <!-- ❌ Eliminado el bloque de Content duplicado para Views y wwwroot -->
   <!-- El SDK de .NET los incluye automáticamente -->

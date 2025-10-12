@@ -86,7 +86,7 @@ namespace DiskoERP.Core.Services.Implementations
             };
         }
 
-        public async Task<bool> RegisterUserAsync(LoginDto model)
+        public async Task<bool> RegisterUserAsync(LoginDto model, string email = "")
         {
             if (string.IsNullOrWhiteSpace(model.Usuario) || string.IsNullOrWhiteSpace(model.Password))
                 return false;
@@ -94,15 +94,20 @@ namespace DiskoERP.Core.Services.Implementations
             var salt = Guid.NewGuid().ToString();
             var hash = BCrypt.Net.BCrypt.HashPassword(model.Password + salt); // ✅ Uso correcto
 
+            // Si no se proporciona email, usar uno generado
+            var emailFinal = string.IsNullOrWhiteSpace(email) ? $"{model.Usuario}@diskoerp.com" : email;
+
             var usuario = new Usuario
             {
                 NombreCompleto = model.Usuario,
-                Email = model.Usuario + "@diskoerp.com",
+                Email = emailFinal,
                 NombreUsuario = model.Usuario,
                 PasswordSalt = salt,
                 PasswordHash = hash,
                 Estado = "Activo",
-                RolId = 2
+                RolId = 2,
+                FechaCreacion = DateTime.Now,
+                CreadoPor = null
             };
 
             _context.Usuarios.Add(usuario);

@@ -1,0 +1,237 @@
+/* Estilos generales para login y registro */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Contenedor principal */
+.login-container {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #5A3AED, #A855F7, #EC4899);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Panel izquierdo de información */
+.login-info {
+    flex: 1;
+    padding: 60px;
+    color: white;
+}
+
+.info-content {
+    max-width: 500px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+}
+
+.info-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.info-list {
+    list-style: none;
+    padding: 0;
+}
+
+.info-list li {
+    padding: 10px 0;
+    font-size: 1.1rem;
+}
+
+.info-list i {
+    margin-right: 10px;
+    color: #10B981;
+}
+
+/* Panel derecho del formulario */
+.login-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 991px) {
+    .login-container {
+        flex-direction: column;
+    }
+    
+    .login-box {
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* Header del login */
+.login-header {
+    margin-bottom: 30px;
+}
+
+.logo-container {
+    animation: bounceIn 1s ease;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    60% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+.logo-icon {
+    font-size: 4rem;
+    color: #7C3AED;
+}
+
+.brand-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1F2937;
+    margin: 10px 0;
+}
+
+.brand-subtitle {
+    color: #6B7280;
+    font-size: 1rem;
+}
+
+/* Formulario */
+.login-form {
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    border: 2px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 12px 16px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #7C3AED;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+/* Grupo de contraseña con botón toggle */
+.password-input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-input-group input {
+    flex: 1;
+    padding-right: 50px;
+}
+
+.btn-toggle-password {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #6B7280;
+    cursor: pointer;
+    padding: 8px;
+    transition: color 0.3s ease;
+}
+
+.btn-toggle-password:hover {
+    color: #7C3AED;
+}
+
+/* Botones */
+.btn-primary {
+    background: linear-gradient(135deg, #7C3AED, #A855F7);
+    border: none;
+    border-radius: 10px;
+    padding: 14px 24px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #6D28D9, #7C3AED);
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Enlaces */
+.forgot-password-link {
+    color: #7C3AED;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.forgot-password-link:hover {
+    color: #6D28D9;
+    text-decoration: underline;
+}
+
+/* Footer */
+.login-footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #E5E7EB;
+}
+
+/* Alertas */
+.alert {
+    border-radius: 10px;
+    padding: 15px 20px;
+}
+
+.alert-success {
+    background-color: #D1FAE5;
+    border-color: #10B981;
+    color: #065F46;
+}
+
+.alert-danger {
+    background-color: #FEE2E2;
+    border-color: #EF4444;
+    color: #991B1B;
+}
+
+/* Animación del spinner */
+.spinner-border {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+

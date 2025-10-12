@@ -1,0 +1,109 @@
+═══════════════════════════════════════════════════════════════
+  🔧 PRUEBA ESTAS 3 OPCIONES (EN ORDEN)
+═══════════════════════════════════════════════════════════════
+
+La aplicación está corriendo en: http://localhost:5000
+
+═══════════════════════════════════════════════════════════════
+OPCIÓN 1: Página HTML Pura (SIN ASP.NET)
+═══════════════════════════════════════════════════════════════
+
+URL: http://localhost:5000/test-register.html
+
+✅ Esta es la más simple posible
+✅ HTML puro sin framework
+✅ Muestra logs en pantalla
+✅ Te dice exactamente qué está pasando
+
+PASOS:
+1. Abre http://localhost:5000/test-register.html
+2. Llena el formulario:
+   Usuario: test123
+   Email: test@test.com
+   Contraseña: 123456
+   Confirmar: 123456
+3. Click en "Crear Cuenta (Test)"
+4. MIRA los logs que aparecen abajo del formulario
+5. Copia y pega los logs si algo falla
+
+═══════════════════════════════════════════════════════════════
+OPCIÓN 2: Versión Simple (Sin JavaScript complejo)
+═══════════════════════════════════════════════════════════════
+
+URL: http://localhost:5000/Auth/RegisterSimple
+
+✅ Formulario simplificado
+✅ Diseño básico con Bootstrap
+✅ Sin JavaScript que interfiera
+
+PASOS:
+1. ANTES de abrir, presiona F12 (DevTools)
+2. Ve a Console
+3. Abre http://localhost:5000/Auth/RegisterSimple
+4. Llena el formulario
+5. Click en "Crear Cuenta"
+6. MIRA la Console - debe decir "Formulario enviándose..."
+7. MIRA la terminal donde corre dotnet - debe mostrar logs
+
+═══════════════════════════════════════════════════════════════
+OPCIÓN 3: Versión Completa (Con diseño)
+═══════════════════════════════════════════════════════════════
+
+URL: http://localhost:5000/Auth/Register
+
+✅ Diseño moderno completo
+✅ JavaScript simplificado inline
+✅ Validación de contraseñas
+
+PASOS:
+1. F12 para abrir DevTools
+2. Abre http://localhost:5000/Auth/Register
+3. Llena todos los campos
+4. ✅ Marca "Acepto términos"
+5. Click en "Crear Cuenta"
+
+═══════════════════════════════════════════════════════════════
+📊 ¿QUÉ ESPERAR?
+═══════════════════════════════════════════════════════════════
+
+SI FUNCIONA:
+→ Mensaje verde "¡Registro exitoso!"
+→ Redirige a /Auth/Login
+→ En la terminal verás:
+  info: ===== INICIO POST REGISTER =====
+  info: Usuario recibido: test123
+  info: Email recibido: test@test.com
+
+SI NO FUNCIONA:
+→ Envíame:
+  1. ¿Qué opción probaste?
+  2. ¿Qué navegador usas?
+  3. Copia lo que aparece en Console (F12)
+  4. Copia los últimos logs de la terminal
+
+═══════════════════════════════════════════════════════════════
+🔍 DEBUGGING EN TIEMPO REAL
+═══════════════════════════════════════════════════════════════
+
+La terminal donde corre `dotnet run` DEBE mostrar:
+- Cada vez que accedes a una página
+- Cada vez que envías el formulario
+- Cualquier error que ocurra
+
+Si NO ves logs cuando haces click, el formulario NO se está enviando.
+
+═══════════════════════════════════════════════════════════════
+💡 IMPORTANTE
+═══════════════════════════════════════════════════════════════
+
+- Recarga con Ctrl+F5 (forzar sin caché)
+- Usa modo incógnito si tienes dudas
+- Cierra otras pestañas del navegador
+- Asegúrate de que dice "Now listening on: http://localhost:5000"
+
+═══════════════════════════════════════════════════════════════
+
+EMPIEZA CON LA OPCIÓN 1 (test-register.html)
+Es la más fácil de diagnosticar.
+
+
