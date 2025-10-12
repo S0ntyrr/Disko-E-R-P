@@ -4,17 +4,38 @@ using BCrypt.Net;
 using Microsoft.AspNetCore.Authorization;
 using System.Linq;
 
-
-public class AdminController : Controller
+namespace LOGIN.USUARIO.SEGURIDAD.Controllers
 {
-    private readonly AppDbContext _context;
-    public AdminController(AppDbContext context) { _context = context; }
-
-    public IActionResult Index()
+    public class AdminController : Controller
     {
-        var usuarios = _context.Usuarios.ToList();
-        return View(usuarios);
-    }
+        private readonly AppDbContext _context;
+        private readonly ILogger<AdminController> _logger;
+        
+        public AdminController(AppDbContext context, ILogger<AdminController> logger) 
+        { 
+            _context = context;
+            _logger = logger;
+        }
+
+        // Panel principal de administración
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
+
+        public IActionResult Index()
+        {
+            try
+            {
+                var usuarios = _context.Usuarios.ToList();
+                return View(usuarios);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener usuarios");
+                return View(new List<Usuario>());
+            }
+        }
 
     public IActionResult Create() => View();
 
@@ -59,12 +80,20 @@ public class AdminController : Controller
 
     public IActionResult Delete(int id)
     {
-        var usuario = _context.Usuarios.Find(id);
-        if (usuario != null)
+        try
         {
-            _context.Usuarios.Remove(usuario);
-            _context.SaveChanges();
+            var usuario = _context.Usuarios.Find(id);
+            if (usuario != null)
+            {
+                _context.Usuarios.Remove(usuario);
+                _context.SaveChanges();
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error al eliminar usuario");
         }
         return RedirectToAction("Index");
+    }
     }
 }

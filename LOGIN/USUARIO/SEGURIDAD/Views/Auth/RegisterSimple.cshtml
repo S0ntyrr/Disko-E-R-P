@@ -69,6 +69,15 @@
                 <input type="password" name="ConfirmPassword" class="form-control" placeholder="Repite tu contraseña" required id="confirmPasswordInput" />
             </div>
 
+            <div class="mb-3">
+                <label class="form-label">Tipo de Cuenta</label>
+                <select class="form-select" id="rolInput" required>
+                    <option value="Usuario">Usuario Normal</option>
+                    <option value="Admin">Administrador</option>
+                </select>
+                <small class="text-muted">Los administradores tienen acceso completo a todos los módulos</small>
+            </div>
+
             <div class="form-check mb-3">
                 <input type="checkbox" class="form-check-input" id="terminos" required />
                 <label class="form-check-label" for="terminos">
@@ -94,6 +103,7 @@
                 const email = document.getElementById('emailInput').value;
                 const password = document.getElementById('passwordInput').value;
                 const confirmPassword = document.getElementById('confirmPasswordInput').value;
+                const rol = document.getElementById('rolInput').value;
 
                 // Validar que las contraseñas coincidan
                 if (password !== confirmPassword) {
@@ -119,11 +129,11 @@
                             usuario: usuario,
                             password: password,
                             email: email,
-                            rol: 'Usuario',
+                            rol: rol,
                             fechaRegistro: new Date().toISOString()
                         });
                         localStorage.setItem('usuariosRegistrados', JSON.stringify(usuarios));
-                        console.log('✅ Usuario guardado en localStorage');
+                        console.log('✅ Usuario guardado en localStorage con rol:', rol);
                     }
                 } catch (err) {
                     console.log('⚠️ No se pudo guardar en localStorage:', err);

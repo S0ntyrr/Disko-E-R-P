@@ -1,0 +1,104 @@
+@{
+    ViewData["Title"] = "Editar Producto";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="mb-4"><i class="fas fa-box"></i> Editar Producto</h2>
+                    
+                    <form id="productoForm">
+                        <input type="hidden" id="productoId">
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Descripción</label>
+                            <textarea class="form-control" id="descripcion" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Stock</label>
+                                <input type="number" class="form-control" id="stock" min="0" required>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Precio</label>
+                                <input type="number" class="form-control" id="precio" step="0.01" min="0" required>
+                            </div>
+                            
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">&nbsp;</label>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="activo">
+                                    <label class="form-check-label" for="activo">Activo</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Actualizar Producto
+                            </button>
+                            <a href="/Producto/Index" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const productoId = parseInt(urlParams.get('id'));
+
+document.addEventListener('DOMContentLoaded', function() {
+    const productos = JSON.parse(localStorage.getItem('productos') || '[]');
+    const producto = productos.find(p => p.productoId === productoId);
+    
+    if (!producto) {
+        alert('Producto no encontrado');
+        window.location.href = '/Producto/Index';
+        return;
+    }
+    
+    document.getElementById('productoId').value = producto.productoId;
+    document.getElementById('nombre').value = producto.nombre;
+    document.getElementById('descripcion').value = producto.descripcion;
+    document.getElementById('stock').value = producto.stock;
+    document.getElementById('precio').value = producto.precio;
+    document.getElementById('activo').checked = producto.activo;
+});
+
+document.getElementById('productoForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    let productos = JSON.parse(localStorage.getItem('productos') || '[]');
+    const index = productos.findIndex(p => p.productoId === productoId);
+    
+    if (index !== -1) {
+        productos[index] = {
+            productoId: productoId,
+            nombre: document.getElementById('nombre').value,
+            descripcion: document.getElementById('descripcion').value,
+            stock: parseInt(document.getElementById('stock').value),
+            precio: parseFloat(document.getElementById('precio').value),
+            activo: document.getElementById('activo').checked
+        };
+        
+        localStorage.setItem('productos', JSON.stringify(productos));
+        alert('Producto actualizado exitosamente!');
+        window.location.href = '/Producto/Index';
+    }
+});
+</script>
+

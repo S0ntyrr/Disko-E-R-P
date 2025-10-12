@@ -1,0 +1,77 @@
+@{
+    ViewData["Title"] = "Detalles del Cliente";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="mb-4"><i class="fas fa-user"></i> Detalles del Cliente</h2>
+                    
+                    <div id="clienteDetails">
+                        <div class="text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <a href="/Cliente/Index" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Volver a la lista
+                        </a>
+                        <a href="#" id="btnEdit" class="btn btn-warning">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const clienteId = parseInt(urlParams.get('id'));
+
+document.addEventListener('DOMContentLoaded', function() {
+    const clientes = JSON.parse(localStorage.getItem('clientes') || '[]');
+    const cliente = clientes.find(c => c.clienteId === clienteId);
+    
+    if (!cliente) {
+        document.getElementById('clienteDetails').innerHTML = `
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-triangle"></i> Cliente no encontrado
+            </div>
+        `;
+        return;
+    }
+    
+    document.getElementById('btnEdit').href = `/Cliente/Edit?id=${clienteId}`;
+    
+    document.getElementById('clienteDetails').innerHTML = `
+        <dl class="row">
+            <dt class="col-sm-3">Nombre Completo</dt>
+            <dd class="col-sm-9">${cliente.nombreCompleto}</dd>
+            
+            <dt class="col-sm-3">Email</dt>
+            <dd class="col-sm-9">${cliente.email}</dd>
+            
+            <dt class="col-sm-3">Teléfono</dt>
+            <dd class="col-sm-9">${cliente.telefono}</dd>
+            
+            <dt class="col-sm-3">Dirección</dt>
+            <dd class="col-sm-9">${cliente.direccion}</dd>
+            
+            <dt class="col-sm-3">Estado</dt>
+            <dd class="col-sm-9">
+                <span class="badge ${cliente.activo ? 'bg-success' : 'bg-secondary'}">
+                    ${cliente.activo ? 'Activo' : 'Inactivo'}
+                </span>
+            </dd>
+        </dl>
+    `;
+});
+</script>
+

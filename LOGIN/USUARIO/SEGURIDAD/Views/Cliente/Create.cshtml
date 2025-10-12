@@ -1,0 +1,82 @@
+@model LOGIN.USUARIO.SEGURIDAD.Models.Cliente
+@{
+    ViewData["Title"] = "Nuevo Cliente";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="mb-4"><i class="fas fa-user-plus"></i> Agregar Nuevo Cliente</h2>
+                    
+                    <form id="clienteForm">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre Completo</label>
+                            <input type="text" class="form-control" id="nombreCompleto" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="telefono" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Dirección</label>
+                            <textarea class="form-control" id="direccion" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="activo" checked>
+                            <label class="form-check-label" for="activo">Cliente Activo</label>
+                        </div>
+                        
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Guardar Cliente
+                            </button>
+                            <a href="/Cliente/Index" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('clienteForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Obtener clientes existentes
+    let clientes = JSON.parse(localStorage.getItem('clientes') || '[]');
+    
+    // Crear nuevo cliente
+    const nuevoCliente = {
+        clienteId: clientes.length > 0 ? Math.max(...clientes.map(c => c.clienteId)) + 1 : 1,
+        nombreCompleto: document.getElementById('nombreCompleto').value,
+        email: document.getElementById('email').value,
+        telefono: document.getElementById('telefono').value,
+        direccion: document.getElementById('direccion').value,
+        activo: document.getElementById('activo').checked
+    };
+    
+    // Agregar y guardar
+    clientes.push(nuevoCliente);
+    localStorage.setItem('clientes', JSON.stringify(clientes));
+    
+    console.log('✅ Cliente guardado:', nuevoCliente);
+    alert('Cliente guardado exitosamente!');
+    
+    // Redirigir a la lista
+    window.location.href = '/Cliente/Index';
+});
+</script>
+

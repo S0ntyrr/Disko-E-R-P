@@ -1,0 +1,352 @@
+@{
+    ViewData["Title"] = "Panel de Administración";
+}
+
+<style>
+    .admin-stat-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        margin-bottom: 20px;
+    }
+    .admin-stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    .admin-stat-icon {
+        font-size: 48px;
+        margin-bottom: 15px;
+    }
+    .admin-stat-number {
+        font-size: 36px;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+    .admin-module-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        margin-bottom: 20px;
+        height: 100%;
+    }
+    .admin-module-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    .module-icon {
+        font-size: 60px;
+        margin-bottom: 20px;
+    }
+    .color-clientes { color: #3b82f6; }
+    .color-proveedores { color: #f59e0b; }
+    .color-productos { color: #10b981; }
+    .color-usuarios { color: #8b5cf6; }
+</style>
+
+<div class="container-fluid mt-4">
+    <!-- Header -->
+    <div class="welcome-card mb-4">
+        <h1><i class="fas fa-shield-alt"></i> Panel de Administración</h1>
+        <p class="lead">Gestiona todos los módulos del sistema desde un solo lugar</p>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="admin-stat-card text-center">
+                <div class="admin-stat-icon color-clientes">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="admin-stat-number" id="statClientes">0</div>
+                <div class="text-muted">Clientes</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="admin-stat-card text-center">
+                <div class="admin-stat-icon color-proveedores">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <div class="admin-stat-number" id="statProveedores">0</div>
+                <div class="text-muted">Proveedores</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="admin-stat-card text-center">
+                <div class="admin-stat-icon color-productos">
+                    <i class="fas fa-boxes"></i>
+                </div>
+                <div class="admin-stat-number" id="statProductos">0</div>
+                <div class="text-muted">Productos</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="admin-stat-card text-center">
+                <div class="admin-stat-icon color-usuarios">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="admin-stat-number" id="statUsuarios">0</div>
+                <div class="text-muted">Usuarios</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gestión de Módulos -->
+    <h3 class="mb-4">Gestión de Módulos</h3>
+    <div class="row">
+        <!-- Clientes -->
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="admin-module-card text-center">
+                <div class="module-icon color-clientes">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h4>Clientes</h4>
+                <p class="text-muted mb-3">Gestiona tu cartera de clientes</p>
+                <div class="d-grid gap-2">
+                    <a href="/Cliente/Index" class="btn btn-outline-primary btn-sm">
+                        <i class="fas fa-list"></i> Ver Lista
+                    </a>
+                    <a href="/Cliente/Create" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus"></i> Crear Nuevo
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Proveedores -->
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="admin-module-card text-center">
+                <div class="module-icon color-proveedores">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h4>Proveedores</h4>
+                <p class="text-muted mb-3">Administra tus proveedores</p>
+                <div class="d-grid gap-2">
+                    <a href="/Proveedor/Index" class="btn btn-outline-warning btn-sm">
+                        <i class="fas fa-list"></i> Ver Lista
+                    </a>
+                    <a href="/Proveedor/Create" class="btn btn-warning btn-sm">
+                        <i class="fas fa-plus"></i> Crear Nuevo
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Productos -->
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="admin-module-card text-center">
+                <div class="module-icon color-productos">
+                    <i class="fas fa-boxes"></i>
+                </div>
+                <h4>Productos</h4>
+                <p class="text-muted mb-3">Control de inventario</p>
+                <div class="d-grid gap-2">
+                    <a href="/Producto/Index" class="btn btn-outline-success btn-sm">
+                        <i class="fas fa-list"></i> Ver Lista
+                    </a>
+                    <a href="/Producto/Create" class="btn btn-success btn-sm">
+                        <i class="fas fa-plus"></i> Crear Nuevo
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Usuarios -->
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="admin-module-card text-center">
+                <div class="module-icon color-usuarios">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h4>Usuarios</h4>
+                <p class="text-muted mb-3">Administra usuarios del sistema</p>
+                <div class="d-grid gap-2">
+                    <a href="/Admin/Index" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-list"></i> Ver Lista
+                    </a>
+                    <a href="/Admin/Create" class="btn btn-secondary btn-sm">
+                        <i class="fas fa-plus"></i> Crear Nuevo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabla de gestión unificada -->
+    <h3 class="mb-4">Gestión Rápida</h3>
+    <div class="card">
+        <div class="card-body">
+            <ul class="nav nav-tabs mb-3" id="adminTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="tab-clientes" data-bs-toggle="tab" data-bs-target="#clientes-panel" type="button">
+                        <i class="fas fa-users"></i> Clientes
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="tab-proveedores" data-bs-toggle="tab" data-bs-target="#proveedores-panel" type="button">
+                        <i class="fas fa-truck"></i> Proveedores
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="tab-productos" data-bs-toggle="tab" data-bs-target="#productos-panel" type="button">
+                        <i class="fas fa-boxes"></i> Productos
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="adminTabsContent">
+                <!-- Clientes -->
+                <div class="tab-pane fade show active" id="clientes-panel">
+                    <div id="adminClientesContainer"></div>
+                </div>
+
+                <!-- Proveedores -->
+                <div class="tab-pane fade" id="proveedores-panel">
+                    <div id="adminProveedoresContainer"></div>
+                </div>
+
+                <!-- Productos -->
+                <div class="tab-pane fade" id="productos-panel">
+                    <div id="adminProductosContainer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    cargarEstadisticas();
+    cargarClientesAdmin();
+    
+    // Cargar datos al cambiar de tab
+    document.getElementById('tab-proveedores').addEventListener('click', cargarProveedoresAdmin);
+    document.getElementById('tab-productos').addEventListener('click', cargarProductosAdmin);
+});
+
+function cargarEstadisticas() {
+    const clientes = JSON.parse(localStorage.getItem('clientes') || '[]');
+    const proveedores = JSON.parse(localStorage.getItem('proveedores') || '[]');
+    const productos = JSON.parse(localStorage.getItem('productos') || '[]');
+    const usuarios = JSON.parse(localStorage.getItem('usuariosRegistrados') || '[]');
+    
+    document.getElementById('statClientes').textContent = clientes.length;
+    document.getElementById('statProveedores').textContent = proveedores.length;
+    document.getElementById('statProductos').textContent = productos.length;
+    document.getElementById('statUsuarios').textContent = usuarios.length;
+}
+
+function cargarClientesAdmin() {
+    const container = document.getElementById('adminClientesContainer');
+    const clientes = JSON.parse(localStorage.getItem('clientes') || '[]');
+    
+    if (clientes.length === 0) {
+        container.innerHTML = '<div class="alert alert-info"><i class="fas fa-info-circle"></i> No hay clientes registrados</div>';
+        return;
+    }
+    
+    let html = '<div class="table-responsive"><table class="table table-hover"><thead><tr><th>Nombre</th><th>Email</th><th>Teléfono</th><th>Estado</th><th>Acciones</th></tr></thead><tbody>';
+    
+    clientes.slice(0, 5).forEach(c => {
+        html += `<tr>
+            <td>${c.nombreCompleto}</td>
+            <td>${c.email}</td>
+            <td>${c.telefono}</td>
+            <td><span class="badge ${c.activo ? 'bg-success' : 'bg-secondary'}">${c.activo ? 'Activo' : 'Inactivo'}</span></td>
+            <td>
+                <a href="/Cliente/Edit?id=${c.clienteId}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                <button onclick="eliminarItemAdmin('clientes', ${c.clienteId}, 'clienteId')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr>`;
+    });
+    
+    html += '</tbody></table></div>';
+    if (clientes.length > 5) {
+        html += `<div class="text-center mt-3"><a href="/Cliente/Index" class="btn btn-primary">Ver Todos (${clientes.length})</a></div>`;
+    }
+    
+    container.innerHTML = html;
+}
+
+function cargarProveedoresAdmin() {
+    const container = document.getElementById('adminProveedoresContainer');
+    const proveedores = JSON.parse(localStorage.getItem('proveedores') || '[]');
+    
+    if (proveedores.length === 0) {
+        container.innerHTML = '<div class="alert alert-info"><i class="fas fa-info-circle"></i> No hay proveedores registrados</div>';
+        return;
+    }
+    
+    let html = '<div class="table-responsive"><table class="table table-hover"><thead><tr><th>Nombre</th><th>Email</th><th>Teléfono</th><th>Estado</th><th>Acciones</th></tr></thead><tbody>';
+    
+    proveedores.slice(0, 5).forEach(p => {
+        html += `<tr>
+            <td>${p.nombre}</td>
+            <td>${p.email}</td>
+            <td>${p.telefono}</td>
+            <td><span class="badge ${p.activo ? 'bg-success' : 'bg-secondary'}">${p.activo ? 'Activo' : 'Inactivo'}</span></td>
+            <td>
+                <a href="/Proveedor/Edit?id=${p.proveedorId}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                <button onclick="eliminarItemAdmin('proveedores', ${p.proveedorId}, 'proveedorId')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr>`;
+    });
+    
+    html += '</tbody></table></div>';
+    if (proveedores.length > 5) {
+        html += `<div class="text-center mt-3"><a href="/Proveedor/Index" class="btn btn-primary">Ver Todos (${proveedores.length})</a></div>`;
+    }
+    
+    container.innerHTML = html;
+}
+
+function cargarProductosAdmin() {
+    const container = document.getElementById('adminProductosContainer');
+    const productos = JSON.parse(localStorage.getItem('productos') || '[]');
+    
+    if (productos.length === 0) {
+        container.innerHTML = '<div class="alert alert-info"><i class="fas fa-info-circle"></i> No hay productos registrados</div>';
+        return;
+    }
+    
+    let html = '<div class="table-responsive"><table class="table table-hover"><thead><tr><th>Nombre</th><th>Stock</th><th>Precio</th><th>Estado</th><th>Acciones</th></tr></thead><tbody>';
+    
+    productos.slice(0, 5).forEach(p => {
+        html += `<tr>
+            <td>${p.nombre}</td>
+            <td><span class="badge bg-info">${p.stock}</span></td>
+            <td>$${p.precio.toFixed(2)}</td>
+            <td><span class="badge ${p.activo ? 'bg-success' : 'bg-secondary'}">${p.activo ? 'Activo' : 'Inactivo'}</span></td>
+            <td>
+                <a href="/Producto/Edit?id=${p.productoId}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
+                <button onclick="eliminarItemAdmin('productos', ${p.productoId}, 'productoId')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+            </td>
+        </tr>`;
+    });
+    
+    html += '</tbody></table></div>';
+    if (productos.length > 5) {
+        html += `<div class="text-center mt-3"><a href="/Producto/Index" class="btn btn-primary">Ver Todos (${productos.length})</a></div>`;
+    }
+    
+    container.innerHTML = html;
+}
+
+function eliminarItemAdmin(tipo, id, idField) {
+    if (confirm('¿Estás seguro de eliminar este elemento?')) {
+        let items = JSON.parse(localStorage.getItem(tipo) || '[]');
+        items = items.filter(item => item[idField] !== id);
+        localStorage.setItem(tipo, JSON.stringify(items));
+        
+        // Recargar vista correspondiente
+        if (tipo === 'clientes') cargarClientesAdmin();
+        else if (tipo === 'proveedores') cargarProveedoresAdmin();
+        else if (tipo === 'productos') cargarProductosAdmin();
+        
+        cargarEstadisticas();
+    }
+}
+</script>
+

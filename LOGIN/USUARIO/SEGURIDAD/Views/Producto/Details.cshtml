@@ -1,0 +1,77 @@
+@{
+    ViewData["Title"] = "Detalles del Producto";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="mb-4"><i class="fas fa-box"></i> Detalles del Producto</h2>
+                    
+                    <div id="productoDetails">
+                        <div class="text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <a href="/Producto/Index" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Volver a la lista
+                        </a>
+                        <a href="#" id="btnEdit" class="btn btn-warning">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const productoId = parseInt(urlParams.get('id'));
+
+document.addEventListener('DOMContentLoaded', function() {
+    const productos = JSON.parse(localStorage.getItem('productos') || '[]');
+    const producto = productos.find(p => p.productoId === productoId);
+    
+    if (!producto) {
+        document.getElementById('productoDetails').innerHTML = `
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-triangle"></i> Producto no encontrado
+            </div>
+        `;
+        return;
+    }
+    
+    document.getElementById('btnEdit').href = `/Producto/Edit?id=${productoId}`;
+    
+    document.getElementById('productoDetails').innerHTML = `
+        <dl class="row">
+            <dt class="col-sm-3">Nombre</dt>
+            <dd class="col-sm-9">${producto.nombre}</dd>
+            
+            <dt class="col-sm-3">Descripción</dt>
+            <dd class="col-sm-9">${producto.descripcion}</dd>
+            
+            <dt class="col-sm-3">Stock</dt>
+            <dd class="col-sm-9"><span class="badge bg-info">${producto.stock} unidades</span></dd>
+            
+            <dt class="col-sm-3">Precio</dt>
+            <dd class="col-sm-9"><strong>$${producto.precio.toFixed(2)}</strong></dd>
+            
+            <dt class="col-sm-3">Estado</dt>
+            <dd class="col-sm-9">
+                <span class="badge ${producto.activo ? 'bg-success' : 'bg-secondary'}">
+                    ${producto.activo ? 'Activo' : 'Inactivo'}
+                </span>
+            </dd>
+        </dl>
+    `;
+});
+</script>
+
