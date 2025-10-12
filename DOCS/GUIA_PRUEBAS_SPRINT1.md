@@ -48,7 +48,6 @@ Esta documentación describe el funcionamiento completo del sistema **Disko ERP 
                           ▼
                   ┌──────────────┐
                   │  SQL Server  │
-                  │  (Opcional)  │
                   └──────────────┘
 ```
 
@@ -1096,15 +1095,6 @@ console.log('Rol actual:', sesion.rol);
 
 ---
 
-## 📞 Soporte y Contacto
-
-**Equipo de Desarrollo:** Disko ERP Team  
-**Sprint:** 1  
-**Fecha de entrega:** Octubre 2025  
-**Versión del documento:** 1.0
-
----
-
 ## 🎓 Conclusión
 
 Este documento proporciona una guía completa para realizar pruebas exhaustivas del Sprint 1 de Disko ERP. Todos los módulos CRUD están implementados y funcionando correctamente tanto con base de datos como con localStorage.
@@ -1117,5 +1107,4 @@ Este documento proporciona una guía completa para realizar pruebas exhaustivas 
 - ✅ Persistencia de datos garantizada
 - ✅ Manejo de errores completo
 
-
-
+---
