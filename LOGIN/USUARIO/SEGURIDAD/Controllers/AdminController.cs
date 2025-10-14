@@ -53,8 +53,18 @@ namespace LOGIN.USUARIO.SEGURIDAD.Controllers
 
     public IActionResult Edit(int id)
     {
-        var usuario = _context.Usuarios.Find(id);
-        return View(usuario);
+        try
+        {
+            var usuario = _context.Usuarios.Find(id);
+            // Si no se encuentra en BD, retorna la vista vacía (funcionará con localStorage)
+            return View(usuario);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, $"Error al cargar usuario para editar {id}");
+            // Aún así retorna la vista para que funcione con localStorage
+            return View();
+        }
     }
 
     [HttpPost]

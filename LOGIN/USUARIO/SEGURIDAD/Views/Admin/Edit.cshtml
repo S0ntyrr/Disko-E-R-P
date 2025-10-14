@@ -1,12 +1,108 @@
 @model LOGIN.USUARIO.SEGURIDAD.Models.Usuario
-<h2>Editar Usuario</h2>
-<form asp-action="Edit" method="post">
-    <input type="hidden" name="UsuarioId" value="@Model.UsuarioId" />
-    <input name="NombreCompleto" value="@Model.NombreCompleto" required />
-    <input name="Email" value="@Model.Email" required />
-    <input name="NombreUsuario" value="@Model.NombreUsuario" required />
-    <input name="PasswordHash" type="password" placeholder="Nueva Contraseña (opcional)" />
-    <input name="RolId" type="number" value="@Model.RolId" required />
-    <input name="Estado" value="@Model.Estado" required />
-    <button type="submit">Actualizar</button>
-</form>
+@{
+    ViewData["Title"] = "Editar Usuario";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="mb-4"><i class="fas fa-user-edit"></i> Editar Usuario</h2>
+                    
+                    <form id="usuarioForm" asp-action="Edit" method="post">
+                        <input type="hidden" id="usuarioId" name="UsuarioId" />
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Nombre Completo</label>
+                            <input type="text" class="form-control" id="nombreCompleto" name="NombreCompleto" required />
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="Email" required />
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Nombre de Usuario</label>
+                            <input type="text" class="form-control" id="nombreUsuario" name="NombreUsuario" required />
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Nueva Contraseña (opcional)</label>
+                            <input type="password" class="form-control" id="passwordHash" name="PasswordHash" placeholder="Dejar en blanco para mantener la contraseña actual" />
+                            <small class="form-text text-muted">Solo completa este campo si deseas cambiar la contraseña</small>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Rol</label>
+                            <select class="form-control" id="rolId" name="RolId" required>
+                                <option value="1">Administrador</option>
+                                <option value="2">Usuario</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Estado</label>
+                            <select class="form-control" id="estado" name="Estado" required>
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
+                        </div>
+                        
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Actualizar Usuario
+                            </button>
+                            <a href="/Admin/Index" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Obtener ID de la URL
+const urlParams = new URLSearchParams(window.location.search);
+const usuarioId = parseInt(urlParams.get('id'));
+
+// Cargar datos del usuario
+document.addEventListener('DOMContentLoaded', function() {
+    // Intentar cargar desde el modelo de servidor primero
+    @if (Model != null)
+    {
+        <text>
+        document.getElementById('usuarioId').value = @Model.UsuarioId;
+        document.getElementById('nombreCompleto').value = '@Html.Raw(Model.NombreCompleto)';
+        document.getElementById('email').value = '@Html.Raw(Model.Email)';
+        document.getElementById('nombreUsuario').value = '@Html.Raw(Model.NombreUsuario)';
+        document.getElementById('rolId').value = @Model.RolId;
+        document.getElementById('estado').value = '@Model.Estado';
+        </text>
+    }
+    else
+    {
+        <text>
+        // Si no hay modelo, cargar desde localStorage
+        const usuarios = JSON.parse(localStorage.getItem('usuariosRegistrados') || '[]');
+        const usuario = usuarios.find(u => u.id === usuarioId);
+        
+        if (usuario) {
+            document.getElementById('usuarioId').value = usuario.id;
+            document.getElementById('nombreCompleto').value = usuario.nombre || usuario.usuario;
+            document.getElementById('email').value = usuario.email;
+            document.getElementById('nombreUsuario').value = usuario.usuario;
+            document.getElementById('rolId').value = usuario.rol === 'Admin' ? 1 : 2;
+            document.getElementById('estado').value = 'Activo';
+        } else {
+            alert('Usuario no encontrado');
+            window.location.href = '/Admin/Index';
+        }
+        </text>
+    }
+});
+</script>

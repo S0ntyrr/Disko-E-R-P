@@ -36,14 +36,14 @@ namespace LOGIN.USUARIO.SEGURIDAD.Controllers
             try
             {
                 var proveedor = _context.Proveedores.Find(id);
-                if (proveedor == null) return NotFound();
+                // Si no se encuentra en BD, retorna la vista vacía (funcionará con localStorage)
                 return View(proveedor);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Error al obtener detalles del proveedor {id}");
-                TempData["Error"] = "No se pudo cargar el proveedor.";
-                return RedirectToAction("Index");
+                // Aún así retorna la vista para que funcione con localStorage
+                return View();
             }
         }
 
@@ -79,14 +79,14 @@ namespace LOGIN.USUARIO.SEGURIDAD.Controllers
             try
             {
                 var proveedor = _context.Proveedores.Find(id);
-                if (proveedor == null) return NotFound();
+                // Si no se encuentra en BD, retorna la vista vacía (funcionará con localStorage)
                 return View(proveedor);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Error al cargar proveedor para editar {id}");
-                TempData["Error"] = "No se pudo cargar el proveedor.";
-                return RedirectToAction("Index");
+                // Aún así retorna la vista para que funcione con localStorage
+                return View();
             }
         }
 

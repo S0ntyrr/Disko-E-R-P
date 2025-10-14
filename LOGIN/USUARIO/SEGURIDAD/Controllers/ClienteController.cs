@@ -37,14 +37,14 @@ namespace LOGIN.USUARIO.SEGURIDAD.Controllers
             try
             {
                 var cliente = _context.Clientes.Find(id);
-                if (cliente == null) return NotFound();
+                // Si no se encuentra en BD, retorna la vista vacía (funcionará con localStorage)
                 return View(cliente);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Error al obtener detalles del cliente {id}");
-                TempData["Error"] = "No se pudo cargar el cliente.";
-                return RedirectToAction("Index");
+                // Aún así retorna la vista para que funcione con localStorage
+                return View();
             }
         }
 
@@ -80,14 +80,14 @@ namespace LOGIN.USUARIO.SEGURIDAD.Controllers
             try
             {
                 var cliente = _context.Clientes.Find(id);
-                if (cliente == null) return NotFound();
+                // Si no se encuentra en BD, retorna la vista vacía (funcionará con localStorage)
                 return View(cliente);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Error al cargar cliente para editar {id}");
-                TempData["Error"] = "No se pudo cargar el cliente.";
-                return RedirectToAction("Index");
+                // Aún así retorna la vista para que funcione con localStorage
+                return View();
             }
         }
 
