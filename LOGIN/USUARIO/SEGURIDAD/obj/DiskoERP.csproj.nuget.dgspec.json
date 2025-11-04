@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\santy\\Desktop\\CC\\Disko-E-R-P\\LOGIN\\USUARIO\\SEGURIDAD\\DiskoERP.csproj": {}
+    "C:\\Users\\Felipe\\Disko-E-R-P\\LOGIN\\USUARIO\\SEGURIDAD\\DiskoERP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\santy\\Desktop\\CC\\Disko-E-R-P\\LOGIN\\USUARIO\\SEGURIDAD\\DiskoERP.csproj": {
+    "C:\\Users\\Felipe\\Disko-E-R-P\\LOGIN\\USUARIO\\SEGURIDAD\\DiskoERP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\santy\\Desktop\\CC\\Disko-E-R-P\\LOGIN\\USUARIO\\SEGURIDAD\\DiskoERP.csproj",
+        "projectUniqueName": "C:\\Users\\Felipe\\Disko-E-R-P\\LOGIN\\USUARIO\\SEGURIDAD\\DiskoERP.csproj",
         "projectName": "DiskoERP",
-        "projectPath": "C:\\Users\\santy\\Desktop\\CC\\Disko-E-R-P\\LOGIN\\USUARIO\\SEGURIDAD\\DiskoERP.csproj",
-        "packagesPath": "C:\\Users\\santy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\santy\\Desktop\\CC\\Disko-E-R-P\\LOGIN\\USUARIO\\SEGURIDAD\\obj\\",
+        "projectPath": "C:\\Users\\Felipe\\Disko-E-R-P\\LOGIN\\USUARIO\\SEGURIDAD\\DiskoERP.csproj",
+        "packagesPath": "C:\\Users\\Felipe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Felipe\\Disko-E-R-P\\LOGIN\\USUARIO\\SEGURIDAD\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\santy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Felipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

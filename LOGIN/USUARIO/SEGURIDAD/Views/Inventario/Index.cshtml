@@ -1,0 +1,299 @@
+@{
+    ViewData["Title"] = "Gestión de Inventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid mt-4">
+    <!-- Header con acciones -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h2><i class="fas fa-warehouse"></i> Gestión de Inventario</h2>
+            <p style="color: rgba(255, 255, 255, 0.9);">Administra tus productos y stock</p>
+        </div>
+        <div class="col-md-6 text-end">
+            <div class="btn-group" role="group">
+                <a href="/Inventario/Dashboard" class="btn btn-outline-primary">
+                    <i class="fas fa-chart-pie"></i> Dashboard
+                </a>
+                <a href="/Producto/Create" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Nuevo Producto
+                </a>
+                <a href="/Inventario/Movimientos/Create" class="btn btn-success">
+                    <i class="fas fa-exchange-alt"></i> Registrar Movimiento
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filtros y Búsqueda -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label"><i class="fas fa-search"></i> Búsqueda</label>
+                    <input type="text" class="form-control" id="busquedaInput" placeholder="Buscar por nombre, descripción...">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label"><i class="fas fa-filter"></i> Categoría</label>
+                    <select class="form-select" id="filtroCategoria">
+                        <option value="">Todas las categorías</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label"><i class="fas fa-toggle-on"></i> Estado</label>
+                    <select class="form-select" id="filtroEstado">
+                        <option value="">Todos</option>
+                        <option value="activo">Activos</option>
+                        <option value="inactivo">Inactivos</option>
+                        <option value="stockBajo">Stock Bajo</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label"><i class="fas fa-sort"></i> Ordenar por</label>
+                    <select class="form-select" id="ordenarPor">
+                        <option value="nombre">Nombre (A-Z)</option>
+                        <option value="nombreDesc">Nombre (Z-A)</option>
+                        <option value="stock">Stock (Menor a Mayor)</option>
+                        <option value="stockDesc">Stock (Mayor a Menor)</option>
+                        <option value="precio">Precio (Menor a Mayor)</option>
+                        <option value="precioDesc">Precio (Mayor a Menor)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col text-end">
+                    <button class="btn btn-secondary" onclick="limpiarFiltros()">
+                        <i class="fas fa-times"></i> Limpiar Filtros
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resumen de resultados -->
+    <div class="row mb-3">
+        <div class="col">
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i> 
+                Mostrando <strong id="contadorResultados">0</strong> producto(s)
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabla de Productos -->
+    <div class="card">
+        <div class="card-body">
+            <div id="productosContainer">
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Cargando...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/inventario.js"></script>
+<script>
+let todosLosProductos = [];
+let categorias = [];
+
+document.addEventListener('DOMContentLoaded', function() {
+    cargarCategorias();
+    cargarProductos();
+    
+    // Event listeners para filtros
+    document.getElementById('busquedaInput').addEventListener('input', aplicarFiltros);
+    document.getElementById('filtroCategoria').addEventListener('change', aplicarFiltros);
+    document.getElementById('filtroEstado').addEventListener('change', aplicarFiltros);
+    document.getElementById('ordenarPor').addEventListener('change', aplicarFiltros);
+});
+
+function cargarCategorias() {
+    categorias = JSON.parse(localStorage.getItem('categoriasInventario') || '[]');
+    const select = document.getElementById('filtroCategoria');
+    
+    categorias.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat.categoriaId;
+        option.textContent = cat.nombre;
+        select.appendChild(option);
+    });
+}
+
+function cargarProductos() {
+    todosLosProductos = JSON.parse(localStorage.getItem('productos') || '[]');
+    
+    // Enriquecer productos con información de categoría
+    todosLosProductos = todosLosProductos.map(producto => {
+        const categoria = categorias.find(c => c.categoriaId === producto.categoriaId);
+        return {
+            ...producto,
+            nombreCategoria: categoria ? categoria.nombre : 'Sin categoría',
+            stockMinimo: producto.stockMinimo || 10
+        };
+    });
+    
+    aplicarFiltros();
+}
+
+function aplicarFiltros() {
+    const busqueda = document.getElementById('busquedaInput').value.toLowerCase();
+    const categoriaId = document.getElementById('filtroCategoria').value;
+    const estado = document.getElementById('filtroEstado').value;
+    const ordenar = document.getElementById('ordenarPor').value;
+    
+    let productosFiltrados = [...todosLosProductos];
+    
+    // Filtro de búsqueda
+    if (busqueda) {
+        productosFiltrados = productosFiltrados.filter(p => 
+            p.nombre.toLowerCase().includes(busqueda) ||
+            (p.descripcion && p.descripcion.toLowerCase().includes(busqueda))
+        );
+    }
+    
+    // Filtro de categoría
+    if (categoriaId) {
+        productosFiltrados = productosFiltrados.filter(p => 
+            p.categoriaId === parseInt(categoriaId)
+        );
+    }
+    
+    // Filtro de estado
+    if (estado === 'activo') {
+        productosFiltrados = productosFiltrados.filter(p => p.activo);
+    } else if (estado === 'inactivo') {
+        productosFiltrados = productosFiltrados.filter(p => !p.activo);
+    } else if (estado === 'stockBajo') {
+        productosFiltrados = productosFiltrados.filter(p => 
+            p.stock <= p.stockMinimo && p.activo
+        );
+    }
+    
+    // Ordenar
+    productosFiltrados.sort((a, b) => {
+        switch(ordenar) {
+            case 'nombre':
+                return a.nombre.localeCompare(b.nombre);
+            case 'nombreDesc':
+                return b.nombre.localeCompare(a.nombre);
+            case 'stock':
+                return a.stock - b.stock;
+            case 'stockDesc':
+                return b.stock - a.stock;
+            case 'precio':
+                return a.precio - b.precio;
+            case 'precioDesc':
+                return b.precio - a.precio;
+            default:
+                return 0;
+        }
+    });
+    
+    mostrarProductos(productosFiltrados);
+}
+
+function mostrarProductos(productos) {
+    document.getElementById('contadorResultados').textContent = productos.length;
+    
+    if (productos.length === 0) {
+        document.getElementById('productosContainer').innerHTML = `
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle"></i> No se encontraron productos con los filtros aplicados.
+            </div>
+        `;
+        return;
+    }
+    
+    let html = `
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Stock</th>
+                        <th>Stock Mín.</th>
+                        <th>Precio</th>
+                        <th>Valor Total</th>
+                        <th>Estado</th>
+                        <th width="250">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+    
+    productos.forEach(producto => {
+        const stockBajo = producto.stock <= producto.stockMinimo;
+        const valorTotal = producto.stock * producto.precio;
+        const stockBadge = stockBajo && producto.activo ? 'bg-danger' : 'bg-info';
+        
+        html += `
+            <tr ${stockBajo && producto.activo ? 'class="table-warning"' : ''}>
+                <td>
+                    <strong>${producto.nombre}</strong>
+                    ${producto.descripcion ? `<br><small class="text-muted">${producto.descripcion.substring(0, 50)}${producto.descripcion.length > 50 ? '...' : ''}</small>` : ''}
+                </td>
+                <td>
+                    <span class="badge bg-secondary">${producto.nombreCategoria || 'Sin categoría'}</span>
+                </td>
+                <td>
+                    <span class="badge ${stockBadge}">${producto.stock}</span>
+                    ${stockBajo && producto.activo ? '<i class="fas fa-exclamation-triangle text-danger ms-1"></i>' : ''}
+                </td>
+                <td><span class="badge bg-warning">${producto.stockMinimo}</span></td>
+                <td>$${producto.precio.toFixed(2)}</td>
+                <td><strong>$${valorTotal.toFixed(2)}</strong></td>
+                <td>
+                    <span class="badge ${producto.activo ? 'bg-success' : 'bg-secondary'}">
+                        ${producto.activo ? 'Activo' : 'Inactivo'}
+                    </span>
+                </td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <a href="/Producto/Details?id=${producto.productoId}" class="btn btn-info" title="Ver">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="/Producto/Edit?id=${producto.productoId}" class="btn btn-warning" title="Editar">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <button onclick="registrarMovimiento(${producto.productoId})" class="btn btn-success" title="Movimiento">
+                            <i class="fas fa-exchange-alt"></i>
+                        </button>
+                        <button onclick="eliminarProducto(${producto.productoId})" class="btn btn-danger" title="Eliminar">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        `;
+    });
+    
+    html += `</tbody></table></div>`;
+    document.getElementById('productosContainer').innerHTML = html;
+}
+
+function limpiarFiltros() {
+    document.getElementById('busquedaInput').value = '';
+    document.getElementById('filtroCategoria').value = '';
+    document.getElementById('filtroEstado').value = '';
+    document.getElementById('ordenarPor').value = 'nombre';
+    aplicarFiltros();
+}
+
+function registrarMovimiento(productoId) {
+    window.location.href = `/Inventario/Movimientos/Create?productoId=${productoId}`;
+}
+
+function eliminarProducto(id) {
+    if (confirm('¿Estás seguro de eliminar este producto?')) {
+        let productos = JSON.parse(localStorage.getItem('productos') || '[]');
+        productos = productos.filter(p => p.productoId !== id);
+        localStorage.setItem('productos', JSON.stringify(productos));
+        cargarProductos();
+    }
+}
+</script>
+

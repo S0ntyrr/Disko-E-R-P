@@ -94,8 +94,14 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "inventario",
-    pattern: "Inventario/{action=Index}/{id?}",
-    defaults: new { controller = "Producto", action = "Index" });
+    pattern: "Inventario/{action=Dashboard}/{id?}",
+    defaults: new { controller = "Inventario", action = "Dashboard" });
+
+// Ruta específica para Movimientos/Create
+app.MapControllerRoute(
+    name: "movimientos-create",
+    pattern: "Inventario/Movimientos/Create/{id?}",
+    defaults: new { controller = "Inventario", action = "MovimientosCreate" });
 
 app.MapControllerRoute(
     name: "clientes",

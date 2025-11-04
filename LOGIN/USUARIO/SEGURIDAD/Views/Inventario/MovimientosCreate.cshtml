@@ -1,0 +1,274 @@
+@{
+    ViewData["Title"] = "Registrar Movimiento de Inventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    <h4><i class="fas fa-exchange-alt"></i> Registrar Movimiento de Inventario</h4>
+                </div>
+                <div class="card-body">
+                    <form id="movimientoForm">
+                        <div class="mb-3">
+                            <label class="form-label">Producto <span class="text-danger">*</span></label>
+                            <select class="form-select" id="productoSelect" required>
+                                <option value="">Selecciona un producto</option>
+                            </select>
+                            <div class="form-text">Información del producto seleccionado</div>
+                            <div id="infoProducto" class="mt-2" style="display: none;">
+                                <div class="alert alert-info">
+                                    <strong>Stock Actual:</strong> <span id="stockActual">-</span><br>
+                                    <strong>Stock Mínimo:</strong> <span id="stockMinimo">-</span><br>
+                                    <strong>Precio:</strong> $<span id="precioProducto">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Tipo de Movimiento <span class="text-danger">*</span></label>
+                            <select class="form-select" id="tipoMovimiento" required>
+                                <option value="">Selecciona un tipo</option>
+                                <option value="Entrada">Entrada (Aumentar stock)</option>
+                                <option value="Salida">Salida (Disminuir stock)</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Cantidad <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control" id="cantidadMovimiento" 
+                                   min="1" step="1" required>
+                            <div class="form-text" id="validacionCantidad"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Motivo</label>
+                            <select class="form-select" id="motivoMovimiento">
+                                <option value="">Selecciona un motivo</option>
+                                <option value="Compra">Compra</option>
+                                <option value="Venta">Venta</option>
+                                <option value="Ajuste">Ajuste de inventario</option>
+                                <option value="Devolución">Devolución</option>
+                                <option value="Pérdida">Pérdida/Deterioro</option>
+                                <option value="Transferencia">Transferencia</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3" id="motivoOtroContainer" style="display: none;">
+                            <label class="form-label">Especificar motivo</label>
+                            <input type="text" class="form-control" id="motivoOtro">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Observaciones</label>
+                            <textarea class="form-control" id="observacionesMovimiento" rows="3"></textarea>
+                        </div>
+
+                        <div class="alert alert-warning" id="alertaStock" style="display: none;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <strong>Advertencia:</strong> <span id="mensajeAlerta"></span>
+                        </div>
+
+                        <div class="alert alert-info" id="previewMovimiento" style="display: none;">
+                            <h6>Vista Previa del Movimiento:</h6>
+                            <p class="mb-0">
+                                <strong>Stock Anterior:</strong> <span id="previewStockAnterior">-</span><br>
+                                <strong>Stock Nuevo:</strong> <span id="previewStockNuevo">-</span>
+                            </p>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Registrar Movimiento
+                            </button>
+                            <a href="/Inventario/Movimientos" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let productos = [];
+let productoSeleccionado = null;
+const urlParams = new URLSearchParams(window.location.search);
+const productoIdParam = urlParams.get('productoId');
+
+document.addEventListener('DOMContentLoaded', function() {
+    cargarProductos();
+    
+    // Event listeners
+    document.getElementById('productoSelect').addEventListener('change', actualizarInfoProducto);
+    document.getElementById('tipoMovimiento').addEventListener('change', validarMovimiento);
+    document.getElementById('cantidadMovimiento').addEventListener('input', validarMovimiento);
+    document.getElementById('motivoMovimiento').addEventListener('change', function() {
+        const mostrarOtro = this.value === 'Otro';
+        document.getElementById('motivoOtroContainer').style.display = mostrarOtro ? 'block' : 'none';
+    });
+    
+    // Si hay productoId en la URL, seleccionarlo automáticamente
+    if (productoIdParam) {
+        setTimeout(() => {
+            document.getElementById('productoSelect').value = productoIdParam;
+            actualizarInfoProducto();
+        }, 100);
+    }
+});
+
+function cargarProductos() {
+    productos = JSON.parse(localStorage.getItem('productos') || '[]');
+    const select = document.getElementById('productoSelect');
+    
+    productos.forEach(prod => {
+        const option = document.createElement('option');
+        option.value = prod.productoId;
+        option.textContent = `${prod.nombre} (Stock: ${prod.stock})`;
+        select.appendChild(option);
+    });
+}
+
+function actualizarInfoProducto() {
+    const productoId = document.getElementById('productoSelect').value;
+    productoSeleccionado = productos.find(p => p.productoId === parseInt(productoId));
+    
+    if (productoSeleccionado) {
+        document.getElementById('infoProducto').style.display = 'block';
+        document.getElementById('stockActual').textContent = productoSeleccionado.stock;
+        document.getElementById('stockMinimo').textContent = productoSeleccionado.stockMinimo || 10;
+        document.getElementById('precioProducto').textContent = productoSeleccionado.precio.toFixed(2);
+        
+        validarMovimiento();
+    } else {
+        document.getElementById('infoProducto').style.display = 'none';
+    }
+}
+
+function validarMovimiento() {
+    const tipo = document.getElementById('tipoMovimiento').value;
+    const cantidad = parseInt(document.getElementById('cantidadMovimiento').value) || 0;
+    const alerta = document.getElementById('alertaStock');
+    const preview = document.getElementById('previewMovimiento');
+    
+    if (!productoSeleccionado || !tipo || !cantidad) {
+        alerta.style.display = 'none';
+        preview.style.display = 'none';
+        return;
+    }
+    
+    const stockAnterior = productoSeleccionado.stock;
+    let stockNuevo;
+    let mensaje = '';
+    let mostrarAlerta = false;
+    
+    if (tipo === 'Entrada') {
+        stockNuevo = stockAnterior + cantidad;
+        preview.style.display = 'block';
+        preview.className = 'alert alert-success';
+        alerta.style.display = 'none';
+    } else if (tipo === 'Salida') {
+        stockNuevo = stockAnterior - cantidad;
+        
+        if (stockNuevo < 0) {
+            mensaje = `No hay suficiente stock. Stock actual: ${stockAnterior}, se intenta descontar: ${cantidad}`;
+            mostrarAlerta = true;
+            preview.className = 'alert alert-danger';
+        } else if (stockNuevo <= (productoSeleccionado.stockMinimo || 10)) {
+            mensaje = `El stock quedará por debajo del mínimo (${productoSeleccionado.stockMinimo || 10}). Stock resultante: ${stockNuevo}`;
+            mostrarAlerta = true;
+            preview.className = 'alert alert-warning';
+        } else {
+            preview.className = 'alert alert-info';
+        }
+        
+        preview.style.display = 'block';
+        alerta.style.display = mostrarAlerta ? 'block' : 'none';
+        document.getElementById('mensajeAlerta').textContent = mensaje;
+    }
+    
+    document.getElementById('previewStockAnterior').textContent = stockAnterior;
+    document.getElementById('previewStockNuevo').textContent = stockNuevo;
+    
+    // Validación de cantidad para salidas
+    if (tipo === 'Salida' && cantidad > stockAnterior) {
+        document.getElementById('validacionCantidad').innerHTML = 
+            `<span class="text-danger">No puedes descontar más de ${stockAnterior} unidades</span>`;
+        return false;
+    } else {
+        document.getElementById('validacionCantidad').innerHTML = '';
+    }
+    
+    return !mostrarAlerta || tipo === 'Entrada';
+}
+
+document.getElementById('movimientoForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    if (!validarMovimiento()) {
+        alert('Por favor, corrige los errores antes de continuar.');
+        return;
+    }
+    
+    const tipo = document.getElementById('tipoMovimiento').value;
+    const cantidad = parseInt(document.getElementById('cantidadMovimiento').value);
+    let motivo = document.getElementById('motivoMovimiento').value;
+    const observaciones = document.getElementById('observacionesMovimiento').value;
+    
+    if (motivo === 'Otro') {
+        motivo = document.getElementById('motivoOtro').value || 'Otro';
+    }
+    
+    // Obtener usuario actual
+    let usuario = 'Sistema';
+    try {
+        const sesion = JSON.parse(localStorage.getItem('sesionActiva') || '{}');
+        usuario = sesion.usuario || 'Sistema';
+    } catch (e) {}
+    
+    // Calcular stocks
+    const stockAnterior = productoSeleccionado.stock;
+    const stockNuevo = tipo === 'Entrada' 
+        ? stockAnterior + cantidad 
+        : stockAnterior - cantidad;
+    
+    // Crear movimiento
+    const movimientos = JSON.parse(localStorage.getItem('movimientosInventario') || '[]');
+    const nuevoMovimientoId = movimientos.length > 0 
+        ? Math.max(...movimientos.map(m => m.movimientoId)) + 1 
+        : 1;
+    
+    const nuevoMovimiento = {
+        movimientoId: nuevoMovimientoId,
+        productoId: productoSeleccionado.productoId,
+        nombreProducto: productoSeleccionado.nombre,
+        tipo: tipo,
+        cantidad: cantidad,
+        stockAnterior: stockAnterior,
+        stockNuevo: stockNuevo,
+        motivo: motivo,
+        observaciones: observaciones,
+        usuario: usuario,
+        fecha: new Date().toISOString()
+    };
+    
+    movimientos.push(nuevoMovimiento);
+    localStorage.setItem('movimientosInventario', JSON.stringify(movimientos));
+    
+    // Actualizar stock del producto
+    const indexProducto = productos.findIndex(p => p.productoId === productoSeleccionado.productoId);
+    if (indexProducto !== -1) {
+        productos[indexProducto].stock = stockNuevo;
+        localStorage.setItem('productos', JSON.stringify(productos));
+    }
+    
+    alert('Movimiento registrado exitosamente!');
+    window.location.href = '/Inventario/Movimientos';
+});
+</script>
+

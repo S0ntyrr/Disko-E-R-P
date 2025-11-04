@@ -154,6 +154,29 @@
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         
+        /* H2 dentro de cards debe ser oscuro */
+        .card h2,
+        .card-body h2,
+        .container-fluid .card h2 {
+            color: #2d3748 !important;
+            text-shadow: none;
+        }
+        
+        /* Texto en cards debe ser oscuro */
+        .card p,
+        .card-body p,
+        .card label,
+        .card .form-label,
+        .card .form-text {
+            color: #4a5568 !important;
+        }
+        
+        /* Excepción: si el texto está dentro de un elemento con fondo oscuro */
+        .card[style*="background"] h2,
+        .card[style*="background"] p {
+            color: white !important;
+        }
+        
         .container-fluid {
             /* Sin animación para evitar errores de compilación */
         }

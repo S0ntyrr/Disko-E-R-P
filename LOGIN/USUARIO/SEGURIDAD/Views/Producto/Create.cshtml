@@ -20,21 +20,37 @@
                             <label class="form-label">Descripción</label>
                             <textarea class="form-control" id="descripcion" rows="3" required></textarea>
                         </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Categoría</label>
+                            <select class="form-select" id="categoria">
+                                <option value="">Sin categoría</option>
+                            </select>
+                            <div class="form-text">
+                                <a href="/Inventario/Categorias" target="_blank">Crear nueva categoría</a>
+                            </div>
+                        </div>
                         
                         <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <label class="form-label">Stock</label>
-                                <input type="number" class="form-control" id="stock" min="0" required>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Stock Inicial</label>
+                                <input type="number" class="form-control" id="stock" min="0" value="0" required>
                             </div>
                             
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Stock Mínimo</label>
+                                <input type="number" class="form-control" id="stockMinimo" min="0" value="10" required>
+                                <div class="form-text">Alerta cuando el stock baje de este nivel</div>
+                            </div>
+                            
+                            <div class="col-md-3 mb-3">
                                 <label class="form-label">Precio</label>
                                 <input type="number" class="form-control" id="precio" step="0.01" min="0" required>
                             </div>
                             
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label class="form-label">&nbsp;</label>
-                                <div class="form-check">
+                                <div class="form-check mt-3">
                                     <input type="checkbox" class="form-check-input" id="activo" checked>
                                     <label class="form-check-label" for="activo">Activo</label>
                                 </div>
@@ -57,18 +73,39 @@
 </div>
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+    cargarCategorias();
+});
+
+function cargarCategorias() {
+    const categorias = JSON.parse(localStorage.getItem('categoriasInventario') || '[]');
+    const select = document.getElementById('categoria');
+    
+    categorias.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat.categoriaId;
+        option.textContent = cat.nombre;
+        select.appendChild(option);
+    });
+}
+
 document.getElementById('productoForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
     let productos = JSON.parse(localStorage.getItem('productos') || '[]');
     
+    const categoriaId = document.getElementById('categoria').value;
+    
     const nuevoProducto = {
         productoId: productos.length > 0 ? Math.max(...productos.map(p => p.productoId)) + 1 : 1,
         nombre: document.getElementById('nombre').value,
         descripcion: document.getElementById('descripcion').value,
-        stock: parseInt(document.getElementById('stock').value),
+        stock: parseInt(document.getElementById('stock').value) || 0,
+        stockMinimo: parseInt(document.getElementById('stockMinimo').value) || 10,
         precio: parseFloat(document.getElementById('precio').value),
-        activo: document.getElementById('activo').checked
+        activo: document.getElementById('activo').checked,
+        categoriaId: categoriaId ? parseInt(categoriaId) : null,
+        fechaCreacion: new Date().toISOString()
     };
     
     productos.push(nuevoProducto);

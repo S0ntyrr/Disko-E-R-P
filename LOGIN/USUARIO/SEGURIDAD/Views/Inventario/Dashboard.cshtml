@@ -1,0 +1,284 @@
+@{
+    ViewData["Title"] = "Dashboard de Inventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid mt-4">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col">
+            <h2><i class="fas fa-warehouse"></i> Dashboard de Inventario</h2>
+            <p style="color: rgba(255, 255, 255, 0.9);">Vista general del estado de tu inventario</p>
+        </div>
+        <div class="col-auto">
+            <a href="/Inventario/Index" class="btn btn-primary">
+                <i class="fas fa-boxes"></i> Gestionar Productos
+            </a>
+        </div>
+    </div>
+
+    <!-- Tarjetas de Estadísticas -->
+    <div class="row mb-4" id="estadisticasContainer">
+        <!-- Se cargarán dinámicamente -->
+    </div>
+
+    <!-- Alertas de Stock Bajo -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0"><i class="fas fa-exclamation-triangle"></i> Alertas de Stock Bajo</h5>
+                </div>
+                <div class="card-body">
+                    <div id="alertasContainer">
+                        <div class="text-center">
+                            <div class="spinner-border text-warning" role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Movimientos Recientes -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><i class="fas fa-history"></i> Movimientos Recientes</h5>
+                        <a href="/Inventario/Movimientos" class="btn btn-sm btn-outline-primary">
+                            Ver Todos <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="movimientosRecientesContainer">
+                        <div class="text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accesos Rápidos -->
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <div class="card feature-card text-center" style="cursor: pointer;" onclick="window.location.href='/Inventario/Index'">
+                <div class="feature-icon">
+                    <i class="fas fa-boxes"></i>
+                </div>
+                <h4>Productos</h4>
+                <p>Gestionar productos del inventario</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card feature-card text-center" style="cursor: pointer;" onclick="window.location.href='/Inventario/Categorias'">
+                <div class="feature-icon">
+                    <i class="fas fa-tags"></i>
+                </div>
+                <h4>Categorías</h4>
+                <p>Organizar productos por categorías</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card feature-card text-center" style="cursor: pointer;" onclick="window.location.href='/Inventario/Movimientos'">
+                <div class="feature-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <h4>Movimientos</h4>
+                <p>Registrar entradas y salidas</p>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card feature-card text-center" style="cursor: pointer;" onclick="window.location.href='/Inventario/Historial'">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h4>Reportes</h4>
+                <p>Ver historial y reportes</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/inventario.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    cargarDashboard();
+});
+
+function cargarDashboard() {
+    cargarEstadisticas();
+    cargarAlertas();
+    cargarMovimientosRecientes();
+}
+
+function cargarEstadisticas() {
+    const productos = JSON.parse(localStorage.getItem('productos') || '[]');
+    const categorias = JSON.parse(localStorage.getItem('categoriasInventario') || '[]');
+    const movimientos = JSON.parse(localStorage.getItem('movimientosInventario') || '[]');
+    
+    // Calcular estadísticas
+    const totalProductos = productos.length;
+    const productosActivos = productos.filter(p => p.activo).length;
+    const stockTotal = productos.reduce((sum, p) => sum + (p.stock || 0), 0);
+    const valorTotal = productos.reduce((sum, p) => sum + (p.stock * p.precio || 0), 0);
+    const productosStockBajo = productos.filter(p => {
+        const stockMinimo = p.stockMinimo || 10;
+        return p.stock <= stockMinimo && p.activo;
+    }).length;
+    
+    const html = `
+        <div class="col-md-3 mb-3">
+            <div class="card text-center" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                <div class="card-body">
+                    <h3><i class="fas fa-boxes"></i></h3>
+                    <h2 class="mb-0">${totalProductos}</h2>
+                    <p class="mb-0">Total Productos</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white;">
+                <div class="card-body">
+                    <h3><i class="fas fa-check-circle"></i></h3>
+                    <h2 class="mb-0">${productosActivos}</h2>
+                    <p class="mb-0">Productos Activos</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white;">
+                <div class="card-body">
+                    <h3><i class="fas fa-layer-group"></i></h3>
+                    <h2 class="mb-0">${stockTotal}</h2>
+                    <p class="mb-0">Stock Total</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white;">
+                <div class="card-body">
+                    <h3><i class="fas fa-dollar-sign"></i></h3>
+                    <h2 class="mb-0">$${valorTotal.toFixed(2)}</h2>
+                    <p class="mb-0">Valor Total</p>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.getElementById('estadisticasContainer').innerHTML = html;
+}
+
+function cargarAlertas() {
+    const productos = JSON.parse(localStorage.getItem('productos') || '[]');
+    const productosStockBajo = productos.filter(p => {
+        const stockMinimo = p.stockMinimo || 10;
+        return p.stock <= stockMinimo && p.activo;
+    });
+    
+    if (productosStockBajo.length === 0) {
+        document.getElementById('alertasContainer').innerHTML = `
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i> No hay productos con stock bajo. ¡Todo está bien!
+            </div>
+        `;
+        return;
+    }
+    
+    let html = `
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Stock Actual</th>
+                        <th>Stock Mínimo</th>
+                        <th>Diferencia</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+    
+    productosStockBajo.forEach(producto => {
+        const stockMinimo = producto.stockMinimo || 10;
+        const diferencia = stockMinimo - producto.stock;
+        html += `
+            <tr>
+                <td><strong>${producto.nombre}</strong></td>
+                <td><span class="badge bg-danger">${producto.stock}</span></td>
+                <td><span class="badge bg-warning">${stockMinimo}</span></td>
+                <td><span class="badge bg-danger">Faltan ${diferencia}</span></td>
+                <td>
+                    <a href="/Producto/Edit?id=${producto.productoId}" class="btn btn-sm btn-primary">
+                        <i class="fas fa-edit"></i> Actualizar Stock
+                    </a>
+                </td>
+            </tr>
+        `;
+    });
+    
+    html += `</tbody></table></div>`;
+    document.getElementById('alertasContainer').innerHTML = html;
+}
+
+function cargarMovimientosRecientes() {
+    const movimientos = JSON.parse(localStorage.getItem('movimientosInventario') || '[]');
+    const movimientosRecientes = movimientos
+        .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
+        .slice(0, 5);
+    
+    if (movimientosRecientes.length === 0) {
+        document.getElementById('movimientosRecientesContainer').innerHTML = `
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i> No hay movimientos registrados aún.
+            </div>
+        `;
+        return;
+    }
+    
+    let html = `
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Producto</th>
+                        <th>Tipo</th>
+                        <th>Cantidad</th>
+                        <th>Usuario</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+    
+    movimientosRecientes.forEach(mov => {
+        const tipoBadge = mov.tipo === 'Entrada' ? 'bg-success' : 'bg-danger';
+        const tipoIcon = mov.tipo === 'Entrada' ? 'fa-arrow-down' : 'fa-arrow-up';
+        html += `
+            <tr>
+                <td>${new Date(mov.fecha).toLocaleDateString('es-CO')}</td>
+                <td>${mov.nombreProducto}</td>
+                <td><span class="badge ${tipoBadge}"><i class="fas ${tipoIcon}"></i> ${mov.tipo}</span></td>
+                <td>${mov.cantidad}</td>
+                <td>${mov.usuario || 'Sistema'}</td>
+            </tr>
+        `;
+    });
+    
+    html += `</tbody></table></div>`;
+    document.getElementById('movimientosRecientesContainer').innerHTML = html;
+}
+
+// Actualizar cada 30 segundos
+setInterval(cargarDashboard, 30000);
+</script>
+

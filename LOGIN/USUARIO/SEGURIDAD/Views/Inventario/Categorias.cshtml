@@ -1,0 +1,247 @@
+@{
+    ViewData["Title"] = "Categorías de Inventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h2><i class="fas fa-tags"></i> Categorías de Inventario</h2>
+            <p style="color: rgba(255, 255, 255, 0.9);">Organiza tus productos por categorías</p>
+        </div>
+        <div class="col-md-6 text-end">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCategoria">
+                <i class="fas fa-plus"></i> Nueva Categoría
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div id="categoriasContainer">
+                        <div class="text-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Cargando...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Crear/Editar Categoría -->
+<div class="modal fade" id="modalCategoria" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitulo">Nueva Categoría</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="categoriaForm">
+                    <input type="hidden" id="categoriaId">
+                    <div class="mb-3">
+                        <label class="form-label">Nombre de la Categoría</label>
+                        <input type="text" class="form-control" id="nombreCategoria" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Descripción</label>
+                        <textarea class="form-control" id="descripcionCategoria" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Color (para identificación visual)</label>
+                        <input type="color" class="form-control form-control-color" id="colorCategoria" value="#667eea">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="guardarCategoria()">
+                    <i class="fas fa-save"></i> Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let categorias = [];
+let categoriaEditando = null;
+
+document.addEventListener('DOMContentLoaded', function() {
+    cargarCategorias();
+    
+    // Resetear modal al cerrar
+    document.getElementById('modalCategoria').addEventListener('hidden.bs.modal', function() {
+        document.getElementById('categoriaForm').reset();
+        document.getElementById('categoriaId').value = '';
+        categoriaEditando = null;
+        document.getElementById('modalTitulo').textContent = 'Nueva Categoría';
+    });
+});
+
+function cargarCategorias() {
+    categorias = JSON.parse(localStorage.getItem('categoriasInventario') || '[]');
+    const productos = JSON.parse(localStorage.getItem('productos') || '[]');
+    
+    // Contar productos por categoría
+    categorias = categorias.map(cat => {
+        const productosEnCategoria = productos.filter(p => p.categoriaId === cat.categoriaId);
+        return {
+            ...cat,
+            cantidadProductos: productosEnCategoria.length
+        };
+    });
+    
+    mostrarCategorias();
+}
+
+function mostrarCategorias() {
+    const container = document.getElementById('categoriasContainer');
+    
+    if (categorias.length === 0) {
+        container.innerHTML = `
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i> No hay categorías registradas. 
+                Haz clic en "Nueva Categoría" para crear una.
+            </div>
+        `;
+        return;
+    }
+    
+    let html = '<div class="row">';
+    
+    categorias.forEach(categoria => {
+        html += `
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body" style="border-left: 4px solid ${categoria.color || '#667eea'}">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title mb-0">
+                                <span class="badge" style="background-color: ${categoria.color || '#667eea'}">
+                                    ${categoria.nombre}
+                                </span>
+                            </h5>
+                            <div class="btn-group btn-group-sm">
+                                <button class="btn btn-sm btn-warning" onclick="editarCategoria(${categoria.categoriaId})" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger" onclick="eliminarCategoria(${categoria.categoriaId})" title="Eliminar">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        ${categoria.descripcion ? `<p class="card-text text-muted small">${categoria.descripcion}</p>` : ''}
+                        <div class="mt-2">
+                            <span class="badge bg-info">
+                                <i class="fas fa-boxes"></i> ${categoria.cantidadProductos} producto(s)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    
+    html += '</div>';
+    container.innerHTML = html;
+}
+
+function guardarCategoria() {
+    const nombre = document.getElementById('nombreCategoria').value.trim();
+    const descripcion = document.getElementById('descripcionCategoria').value.trim();
+    const color = document.getElementById('colorCategoria').value;
+    const categoriaId = document.getElementById('categoriaId').value;
+    
+    if (!nombre) {
+        alert('El nombre de la categoría es requerido');
+        return;
+    }
+    
+    categorias = JSON.parse(localStorage.getItem('categoriasInventario') || '[]');
+    
+    if (categoriaEditando) {
+        // Editar categoría existente
+        const index = categorias.findIndex(c => c.categoriaId === categoriaEditando.categoriaId);
+        if (index !== -1) {
+            categorias[index] = {
+                ...categorias[index],
+                nombre: nombre,
+                descripcion: descripcion,
+                color: color
+            };
+        }
+    } else {
+        // Crear nueva categoría
+        const nuevoId = categorias.length > 0 
+            ? Math.max(...categorias.map(c => c.categoriaId)) + 1 
+            : 1;
+        
+        categorias.push({
+            categoriaId: nuevoId,
+            nombre: nombre,
+            descripcion: descripcion,
+            color: color,
+            fechaCreacion: new Date().toISOString()
+        });
+    }
+    
+    localStorage.setItem('categoriasInventario', JSON.stringify(categorias));
+    
+    // Cerrar modal
+    const modal = bootstrap.Modal.getInstance(document.getElementById('modalCategoria'));
+    modal.hide();
+    
+    cargarCategorias();
+}
+
+function editarCategoria(id) {
+    categoriaEditando = categorias.find(c => c.categoriaId === id);
+    
+    if (!categoriaEditando) return;
+    
+    document.getElementById('modalTitulo').textContent = 'Editar Categoría';
+    document.getElementById('categoriaId').value = categoriaEditando.categoriaId;
+    document.getElementById('nombreCategoria').value = categoriaEditando.nombre;
+    document.getElementById('descripcionCategoria').value = categoriaEditando.descripcion || '';
+    document.getElementById('colorCategoria').value = categoriaEditando.color || '#667eea';
+    
+    const modal = new bootstrap.Modal(document.getElementById('modalCategoria'));
+    modal.show();
+}
+
+function eliminarCategoria(id) {
+    const productos = JSON.parse(localStorage.getItem('productos') || '[]');
+    const productosEnCategoria = productos.filter(p => p.categoriaId === id);
+    
+    if (productosEnCategoria.length > 0) {
+        if (!confirm(`Esta categoría tiene ${productosEnCategoria.length} producto(s). ¿Deseas eliminarla de todos modos?`)) {
+            return;
+        }
+    } else {
+        if (!confirm('¿Estás seguro de eliminar esta categoría?')) {
+            return;
+        }
+    }
+    
+    categorias = categorias.filter(c => c.categoriaId !== id);
+    localStorage.setItem('categoriasInventario', JSON.stringify(categorias));
+    
+    // Si hay productos en esta categoría, quitarles la categoría
+    if (productosEnCategoria.length > 0) {
+        productos.forEach(p => {
+            if (p.categoriaId === id) {
+                delete p.categoriaId;
+            }
+        });
+        localStorage.setItem('productos', JSON.stringify(productos));
+    }
+    
+    cargarCategorias();
+}
+</script>
+
